@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "Home",
+    "faq": "FAQ",
+    "about": "About"
+  },
+  "home": {
+    "title": "CosmoVid",
+    "subtitle": "Download TikTok videos in HD — with or without watermark. Free & fast.",
+    "placeholder": "Paste TikTok video URL here...",
+    "urlValid": "Valid TikTok URL",
+    "urlInvalid": "Invalid TikTok URL",
+    "submit": "Get Download Links",
+    "loading": "Fetching video...",
+    "errorInvalid": "Please enter a valid TikTok URL.",
+    "downloadHdWatermark": "MP4 HD (with watermark)",
+    "downloadHdNoWatermark": "MP4 HD (no watermark)",
+    "downloadMp3": "MP3 Audio",
+    "tryAnother": "Download another video",
+    "howToUse": "How to use",
+    "step1": "Open TikTok and copy the video link (share → Copy link).",
+    "step2": "Paste the URL in the box above.",
+    "step3": "Click \"Get Download Links\" and wait a moment.",
+    "step4": "Choose MP4 (with or without watermark) or MP3 and download.",
+    "metaTitle": "CosmoVid - TikTok Downloader HD | No Watermark | Free Download",
+    "metaDescription": "Download TikTok videos in HD with or without watermark. Free TikTok downloader. MP4 and MP3. No app required."
+  },
+  "faq": {
+    "title": "FAQ",
+    "howItWorks": "How it works",
+    "howItWorksAnswer": "Paste a TikTok video link in the box on the homepage and click \"Get Download Links\". We fetch the video and show you direct download links for MP4 (with/without watermark) and MP3.",
+    "legal": "Legal disclaimer",
+    "legalAnswer": "This tool is for personal use only. Respect copyright and TikTok's Terms of Service. Do not redistribute or use downloaded content commercially without permission. We are not affiliated with TikTok.",
+    "metaTitle": "FAQ | CosmoVid",
+    "metaDescription": "How to use the TikTok downloader. Legal disclaimer and frequently asked questions."
+  },
+  "about": {
+    "title": "About",
+    "intro": "We provide a simple, fast way to download TikTok videos in HD — with or without the TikTok watermark — and as MP3.",
+    "contact": "Contact",
+    "contactText": "For support or feedback, use the form below or email us.",
+    "metaTitle": "About & Contact | CosmoVid",
+    "metaDescription": "About our TikTok downloader and how to contact us."
+  },
+  "common": {
+    "backToHome": "Back to Home",
+    "language": "Language",
+    "adLabel": "Advertisement",
+    "skipToContent": "Skip to main content",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "copyLink": "Copy link",
+    "copied": "Copied!",
+    "retry": "Retry with same URL"
+  }
+}

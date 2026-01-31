@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #F5F0E8;
+  --charcoal: #1A1A1A;
+  --gold: #B8860B;
+  --stone: #6B6B6B;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-charcoal antialiased;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+.dark .ad-slot {
+  @apply bg-stone/20 border-stone/30 text-stone/70;
+}
+
+[dir="rtl"] {
+  font-family: var(--font-sans), 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Premium minimal focus */
+*:focus-visible {
+  @apply outline outline-2 outline-gold outline-offset-2;
+}
+
+/* Ad placeholder styling */
+.ad-slot {
+  @apply bg-stone/10 border border-stone/20 rounded min-h-[90px] flex items-center justify-center text-stone/60 text-sm;
+}
