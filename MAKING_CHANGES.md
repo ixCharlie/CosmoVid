@@ -141,3 +141,16 @@ After this, the live site uses your new code.
 - **Deploy:** push to `main`, then on server: `git pull` + rebuild backend + rebuild frontend + `pm2 restart tiktok-api tiktok-web`
 
 For first-time server setup, domain, Nginx, and SSL, see **DEPLOYMENT.md** and **NEXT_STEPS.md**.
+
+---
+
+## Styles not loading on the live site?
+
+If the page looks plain (no colors, no Tailwind) on the server:
+
+1. **Use production build** — On the server you must run `npm run build` then `npm start` (or PM2). Do **not** run `next dev` in production.
+2. **Rebuild frontend** — In SSH: `cd /var/www/tiktok-downloader/frontend && rm -rf .next && npm run build && pm2 restart tiktok-web`.
+3. **Nginx** — Your config must proxy the whole site to the Next app: `location / { proxy_pass http://127.0.0.1:3000; ... }`. So `/` and `/_next/static/*` (where CSS lives) go to Next.js.
+4. **Hard refresh** — Try Ctrl+Shift+R (or Cmd+Shift+R) to bypass cache.
+
+The root layout includes a small inline style fallback so the page still has background and text color even if the CSS bundle fails to load.

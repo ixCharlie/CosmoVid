@@ -3,11 +3,14 @@ import Link from 'next/link';
 export function LanguagePicker() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-cream dark:bg-charcoal">
-      <div className="text-center max-w-md">
+      <div className="text-center max-w-lg">
         <h1 className="font-display text-2xl sm:text-3xl text-charcoal dark:text-cream tracking-tight mb-2">
           CosmoVid
         </h1>
-        <p className="text-stone dark:text-stone/80 text-sm sm:text-base mb-8">
+        <p className="text-lg sm:text-xl text-charcoal dark:text-cream font-medium mb-1">
+          Download TikTok videos in HD — with or without watermark. Free &amp; fast.
+        </p>
+        <p className="text-stone dark:text-stone/80 text-sm mb-8">
           Choose your language / اختر لغتك
         </p>
         <nav className="flex flex-col sm:flex-row gap-4 justify-center" aria-label="Language selection">

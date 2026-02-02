@@ -10,6 +10,36 @@ This guide walks through deploying **CosmoVid** (TikTok downloader) on an Ubuntu
 
 ---
 
+## Start here: Get CosmoVid from GitHub onto your server
+
+You don’t “push” to the server. You **push to GitHub**, then on the server you **clone** from GitHub.
+
+**1. On your laptop** (in this project folder) — push your code to GitHub:
+
+```bash
+git add .
+git commit -m "Deploy CosmoVid"
+git push origin main
+```
+
+*(Use `master` instead of `main` if that’s your default branch.)*
+
+**2. On the DigitalOcean server** — clone your repo into the app folder:
+
+```bash
+cd /var/www
+sudo mkdir -p tiktok-downloader
+sudo chown $USER:$USER tiktok-downloader
+cd tiktok-downloader
+git clone https://github.com/ixCharlie/CosmoVid.git .
+```
+
+The `.` at the end clones into the current folder. Repo: [ixCharlie/CosmoVid](https://github.com/ixCharlie/CosmoVid).
+
+**3. Then** follow the rest of this guide: install Node, Nginx, PM2 (if not done), install yt-dlp, set up backend (§8), frontend (§9), Nginx (§10), and SSL (§11).
+
+---
+
 ## 1. Create DigitalOcean Droplet
 
 1. Log in to [DigitalOcean](https://cloud.digitalocean.com).
@@ -83,7 +113,7 @@ cd /var/www
 sudo mkdir -p tiktok-downloader
 sudo chown $USER:$USER tiktok-downloader
 cd tiktok-downloader
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git .
+git clone https://github.com/ixCharlie/CosmoVid.git .
 ```
 
 ---
@@ -137,11 +167,12 @@ cd /var/www/tiktok-downloader/frontend
 npm install
 ```
 
-Set environment variables for build:
+Set environment variables for build (**required** — if you skip this, the site will call `http://localhost:4000` from the user’s browser and show “Network error”):
 
 ```bash
-export NEXT_PUBLIC_API_URL=https://api.YOUR_DOMAIN.com
-export NEXT_PUBLIC_SITE_URL=https://YOUR_DOMAIN.com
+# Use your real domain. Same-origin (recommended): use https://cosmovid.com and proxy /api to backend in Nginx.
+export NEXT_PUBLIC_API_URL=https://cosmovid.com
+export NEXT_PUBLIC_SITE_URL=https://cosmovid.com
 export NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 npm run build
 ```
@@ -267,7 +298,117 @@ sudo ufw status
 
 ---
 
-## 14. Useful Commands
+## 14. Updating the Website (Push New Code)
+
+**Best approach:** SSH in, pull from Git, rebuild, then restart PM2.
+
+1. **Push your changes to GitHub** (from your laptop):
+
+   ```bash
+   git add .
+   git commit -m "Your update message"
+   git push origin main
+   ```
+
+2. **On the DigitalOcean server**, SSH in and run:
+
+   ```bash
+   ssh root@YOUR_DROPLET_IP
+   cd /var/www/tiktok-downloader
+   git pull origin main
+   ```
+
+3. **Rebuild and restart backend:**
+
+   ```bash
+   cd backend
+   npm install
+   npm run build
+   pm2 restart tiktok-api
+   ```
+
+4. **Rebuild and restart frontend** (set env vars if you use them):
+
+   ```bash
+   cd /var/www/tiktok-downloader/frontend
+   npm install
+   export NEXT_PUBLIC_API_URL=https://api.YOUR_DOMAIN.com
+   export NEXT_PUBLIC_SITE_URL=https://YOUR_DOMAIN.com
+   npm run build
+   pm2 restart tiktok-web
+   ```
+
+**One-liner** (after `git pull`, from project root):
+
+```bash
+cd /var/www/tiktok-downloader/backend && npm install && npm run build && pm2 restart tiktok-api && cd ../frontend && npm install && npm run build && pm2 restart tiktok-web
+```
+
+---
+
+## 15. Backup and Rollback
+
+### Backups
+
+- **Git is your code backup.** Every push to `main` is a restore point. Use tags for releases:
+
+  ```bash
+  git tag -a v1.0.0 -m "Stable release"
+  git push origin v1.0.0
+  ```
+
+- **Server snapshot (DigitalOcean):** In the Droplet dashboard → **Snapshots** → Create snapshot. Do this before big updates. Restoring means creating a new Droplet from the snapshot (or restoring to the same Droplet if supported).
+
+- **Quick file backup on server** (optional, before a risky update):
+
+  ```bash
+  cd /var/www
+  sudo cp -r tiktok-downloader tiktok-downloader-backup-$(date +%Y%m%d)
+  ```
+
+### Rollback to a previous version
+
+**Option A — Roll back via Git (recommended)**
+
+1. On the server:
+
+   ```bash
+   cd /var/www/tiktok-downloader
+   git log --oneline -10
+   ```
+
+2. Pick the commit you want (e.g. `abc1234`) and reset:
+
+   ```bash
+   git reset --hard abc1234
+   ```
+
+3. Rebuild and restart (same as “Updating the Website” above):
+
+   ```bash
+   cd backend && npm install && npm run build && pm2 restart tiktok-api
+   cd ../frontend && npm install && npm run build && pm2 restart tiktok-web
+   ```
+
+**Option B — Restore from file backup**
+
+If you made a copy of the app folder:
+
+```bash
+ cd /var/www
+ sudo rm -rf tiktok-downloader
+ sudo mv tiktok-downloader-backup-YYYYMMDD tiktok-downloader
+ cd tiktok-downloader/backend && npm run build && pm2 restart tiktok-api
+ cd ../frontend && npm run build && pm2 restart tiktok-web
+```
+
+**Option C — Restore from DigitalOcean snapshot**
+
+In the control panel, create a new Droplet from the snapshot (or use “Restore” if available). Point your domain to the new Droplet IP and re-run SSL (Certbot) if the IP changed.
+
+---
+
+## 16. Useful Commands
 
 | Task              | Command                          |
 |-------------------|----------------------------------|

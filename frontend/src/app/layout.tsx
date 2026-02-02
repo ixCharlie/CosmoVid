@@ -50,6 +50,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
+        {/* Critical fallback so page is never unstyled if CSS bundle fails to load */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              :root{--cream:#F5F0E8;--charcoal:#1A1A1A;--gold:#B8860B;--stone:#6B6B6B;}
+              html{scroll-behavior:smooth;}
+              body{background-color:var(--cream);color:var(--charcoal);min-height:100vh;margin:0;font-family:system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
+              .dark body{background-color:var(--charcoal);color:var(--cream);}
+            `,
+          }}
+        />
         {/* Theme script runs only in browser; extensions can reorder/remove scripts — suppress hydration mismatch */}
         <script
           suppressHydrationWarning

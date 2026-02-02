@@ -11,7 +11,8 @@ app.use(express.json());
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
-app.use('/api/download', proxyRouter);
+// POST /api/download -> downloadRouter; GET /api/download/proxy -> proxyRouter (mounted under /download)
+downloadRouter.use('/download', proxyRouter);
 app.use('/api', downloadRouter);
 
 app.listen(PORT, () => {
