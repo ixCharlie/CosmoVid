@@ -18,10 +18,10 @@ export function AboutContent() {
         <h2 className="font-display text-xl text-charcoal dark:text-cream mb-2">{t('about.contact')}</h2>
         <p className="text-stone dark:text-stone/80 leading-relaxed mb-4">{t('about.contactText')}</p>
         <a
-          href="mailto:support@example.com"
+          href="mailto:himtonysoprano@gmail.com"
           className="text-gold hover:underline font-medium"
         >
-          support@example.com
+          himtonysoprano@gmail.com
         </a>
       </section>
       <p className="mt-8">
