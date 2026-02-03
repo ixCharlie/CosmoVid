@@ -34,7 +34,7 @@ export function Header({ defaultLocale: _ }: HeaderProps = {}) {
             aria-label="CosmoVid Home"
           >
             <Image
-              src="/Cosmo.png"
+              src="/IICON.png"
               alt=""
               width={40}
               height={40}
