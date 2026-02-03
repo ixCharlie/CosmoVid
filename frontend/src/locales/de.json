@@ -10,20 +10,19 @@
     "loading": "Video wird geladen...",
     "errorInvalid": "Bitte gib eine gültige TikTok-URL ein.",
     "downloadVideo": "Video herunterladen",
-    "downloadMp3": "MP3-Audio",
     "tryAnother": "Anderes Video herunterladen",
     "howToUse": "So geht's",
     "step1": "Öffne TikTok und kopiere den Videolink (Teilen → Link kopieren).",
     "step2": "Füge den Link oben in das Feld ein.",
     "step3": "Klicke auf \"Download-Links abrufen\" und warte kurz.",
-    "step4": "Wähle MP4 (mit oder ohne Wasserzeichen) oder MP3 und lade herunter.",
+    "step4": "Wähle MP4 (mit oder ohne Wasserzeichen) und lade herunter.",
     "metaTitle": "CosmoVid - TikTok Downloader HD | Ohne Wasserzeichen | Kostenlos",
-    "metaDescription": "Lade TikTok-Videos in HD mit oder ohne Wasserzeichen herunter. Kostenloser TikTok-Downloader. MP4 und MP3. Keine Anmeldung."
+    "metaDescription": "Lade TikTok-Videos in HD mit oder ohne Wasserzeichen herunter. Kostenloser TikTok-Downloader. MP4. Keine Anmeldung."
   },
   "faq": {
     "title": "FAQ",
     "howItWorks": "So funktioniert es",
-    "howItWorksAnswer": "Füge einen TikTok-Videolink auf der Startseite ein und klicke auf \"Download-Links abrufen\". Wir laden das Video und zeigen dir direkte Links für MP4 und MP3.",
+    "howItWorksAnswer": "Füge einen TikTok-Videolink auf der Startseite ein und klicke auf \"Download-Links abrufen\". Wir laden das Video und zeigen dir direkte Links für MP4 (mit oder ohne Wasserzeichen).",
     "legal": "Rechtlicher Hinweis",
     "legalAnswer": "Dieses Tool ist nur für den privaten Gebrauch. Bitte respektiere Urheberrechte und die TikTok-Nutzungsbedingungen. Wir sind nicht mit TikTok verbunden.",
     "metaTitle": "FAQ | CosmoVid",
@@ -31,7 +30,7 @@
   },
   "about": {
     "title": "Über uns",
-    "intro": "Wir bieten eine einfache, schnelle Möglichkeit, TikTok-Videos in HD — mit oder ohne Wasserzeichen — und als MP3 herunterzuladen.",
+    "intro": "Wir bieten eine einfache, schnelle Möglichkeit, TikTok-Videos in HD — mit oder ohne Wasserzeichen — herunterzuladen.",
     "contact": "Kontakt",
     "contactText": "Für Support oder Feedback nutze das Formular oder schreib uns.",
     "metaTitle": "Über uns & Kontakt | CosmoVid",
@@ -41,14 +40,14 @@
     "title": "Video-Tools",
     "intro": "Kostenlose Online-Tools zum Herunterladen und Bearbeiten von Videos. Weitere Tools demnächst.",
     "toolTikTokTitle": "TikTok-Downloader",
-    "toolTikTokDesc": "Lade TikTok-Videos in HD als MP4 oder MP3 herunter. Link einfügen und direkt herunterladen.",
+    "toolTikTokDesc": "Lade TikTok-Videos in HD als MP4 herunter. Link einfügen und direkt herunterladen.",
     "toolShrinkTitle": "Video verkleinern",
     "toolShrinkDesc": "Videos komprimieren, um die Dateigröße zu reduzieren. Max. 100 MB. Ausgabe: MP4, 720p.",
     "useTool": "Tool nutzen",
     "comingSoon": "Demnächst",
     "moreComing": "Weitere Video-Tools demnächst.",
     "metaTitle": "Video-Tools | CosmoVid",
-    "metaDescription": "Kostenlose Video-Tools: TikTok-Downloader und mehr. Videos in HD herunterladen, in MP3 konvertieren und mehr."
+    "metaDescription": "Kostenlose Video-Tools: TikTok-Downloader und mehr. Videos in HD herunterladen."
   },
   "shrink": {
     "title": "Video verkleinern",

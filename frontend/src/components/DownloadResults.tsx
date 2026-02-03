@@ -11,18 +11,16 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 /** Prefer TikTok page URL so backend fetches a fresh CDN link (avoids expired links). Fallback: direct media URL. */
 function proxyDownloadUrl(
   tiktokPageUrl: string | undefined,
-  variant: 'no_watermark' | 'watermark' | 'mp3',
+  variant: 'no_watermark' | 'watermark',
   directMediaUrl?: string
 ): string {
   if (tiktokPageUrl && typeof btoa !== 'undefined') {
     const encoded = btoa(encodeURIComponent(tiktokPageUrl));
-    const type = variant === 'mp3' ? 'mp3' : 'mp4';
-    return `${API_URL}/api/download/proxy?tiktok_url=${encodeURIComponent(encoded)}&variant=${variant}&type=${type}`;
+    return `${API_URL}/api/download/proxy?tiktok_url=${encodeURIComponent(encoded)}&variant=${variant}&type=mp4`;
   }
   if (directMediaUrl && typeof btoa !== 'undefined') {
     const encoded = btoa(encodeURIComponent(directMediaUrl));
-    const type = variant === 'mp3' ? 'mp3' : 'mp4';
-    return `${API_URL}/api/download/proxy?media=${encodeURIComponent(encoded)}&type=${type}`;
+    return `${API_URL}/api/download/proxy?media=${encodeURIComponent(encoded)}&type=mp4`;
   }
   return '#';
 }
@@ -91,19 +89,18 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
   const { title, author, cover, links } = result;
   const videoUrl = links.mp4HdNoWatermark || links.mp4HdWatermark;
   const videoVariant = links.mp4HdNoWatermark ? 'no_watermark' : 'watermark';
-  const hasAnyLink = videoUrl || links.mp3;
+  const hasAnyLink = !!videoUrl;
 
   /** Sanitize video title for use as download filename; fallback to generic name. */
-  function downloadFilename(ext: 'mp4' | 'mp3'): string {
-    const fallback = ext === 'mp3' ? 'tiktok-audio.mp3' : 'tiktok-video.mp4';
-    if (!title || typeof title !== 'string') return fallback;
+  function downloadFilename(): string {
+    if (!title || typeof title !== 'string') return 'tiktok-video.mp4';
     const safe = title
       .replace(/[/\\:*?"<>|]/g, '')
       .replace(/\s+/g, ' ')
       .trim()
       .slice(0, 100);
-    if (!safe) return fallback;
-    return `${safe}.${ext}`;
+    if (!safe) return 'tiktok-video.mp4';
+    return `${safe}.mp4`;
   }
 
   function DownloadButton({
@@ -174,15 +171,7 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
                   label={t('home.downloadVideo')}
                   id="mp4-video"
                   primary
-                  downloadName={downloadFilename('mp4')}
-                />
-              )}
-              {links.mp3 && (
-                <DownloadButton
-                  href={proxyDownloadUrl(result._submittedUrl, 'mp3', links.mp3)}
-                  label={t('home.downloadMp3')}
-                  id="mp3"
-                  downloadName={downloadFilename('mp3')}
+                  downloadName={downloadFilename()}
                 />
               )}
             </div>

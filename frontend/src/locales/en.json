@@ -15,20 +15,19 @@
     "loading": "Fetching video...",
     "errorInvalid": "Please enter a valid TikTok URL.",
     "downloadVideo": "Download video",
-    "downloadMp3": "MP3 Audio",
     "tryAnother": "Download another video",
     "howToUse": "How to use",
     "step1": "Open TikTok and copy the video link (share → Copy link).",
     "step2": "Paste the URL in the box above.",
     "step3": "Click \"Get Download Links\" and wait a moment.",
-    "step4": "Choose MP4 (with or without watermark) or MP3 and download.",
+    "step4": "Choose MP4 (with or without watermark) and download.",
     "metaTitle": "CosmoVid - TikTok Downloader HD | No Watermark | Free Download",
-    "metaDescription": "Download TikTok videos in HD with or without watermark. Free TikTok downloader. MP4 and MP3. No app required."
+    "metaDescription": "Download TikTok videos in HD with or without watermark. Free TikTok downloader. MP4. No app required."
   },
   "faq": {
     "title": "FAQ",
     "howItWorks": "How it works",
-    "howItWorksAnswer": "Paste a TikTok video link in the box on the homepage and click \"Get Download Links\". We fetch the video and show you direct download links for MP4 (with/without watermark) and MP3.",
+    "howItWorksAnswer": "Paste a TikTok video link in the box on the homepage and click \"Get Download Links\". We fetch the video and show you direct download links for MP4 (with or without watermark).",
     "legal": "Legal disclaimer",
     "legalAnswer": "This tool is for personal use only. Respect copyright and TikTok's Terms of Service. Do not redistribute or use downloaded content commercially without permission. We are not affiliated with TikTok.",
     "metaTitle": "FAQ | CosmoVid",
@@ -36,7 +35,7 @@
   },
   "about": {
     "title": "About",
-    "intro": "We provide a simple, fast way to download TikTok videos in HD — with or without the TikTok watermark — and as MP3.",
+    "intro": "We provide a simple, fast way to download TikTok videos in HD — with or without the TikTok watermark.",
     "contact": "Contact",
     "contactText": "For support or feedback, use the form below or email us.",
     "metaTitle": "About & Contact | CosmoVid",
@@ -46,14 +45,14 @@
     "title": "Video tools",
     "intro": "Free online tools for downloading and working with videos. More tools coming soon.",
     "toolTikTokTitle": "TikTok downloader",
-    "toolTikTokDesc": "Download TikTok videos in HD as MP4 or MP3. Paste a link and get direct download.",
+    "toolTikTokDesc": "Download TikTok videos in HD as MP4. Paste a link and get direct download.",
     "toolShrinkTitle": "Video shrinker",
     "toolShrinkDesc": "Compress videos to reduce file size. Max 100MB upload. Output: MP4, 720p, smaller size.",
     "useTool": "Use tool",
     "comingSoon": "Coming soon",
     "moreComing": "More video tools coming soon.",
     "metaTitle": "Video tools | CosmoVid",
-    "metaDescription": "Free video tools: TikTok downloader and more. Download videos in HD, convert to MP3, and more."
+    "metaDescription": "Free video tools: TikTok downloader and more. Download videos in HD."
   },
   "shrink": {
     "title": "Video shrinker",

@@ -10,20 +10,19 @@
     "loading": "Buscando vídeo...",
     "errorInvalid": "Digite um link válido do TikTok.",
     "downloadVideo": "Baixar vídeo",
-    "downloadMp3": "Áudio MP3",
     "tryAnother": "Baixar outro vídeo",
     "howToUse": "Como usar",
     "step1": "Abra o TikTok e copie o link do vídeo (compartilhar → Copiar link).",
     "step2": "Cole o link na caixa acima.",
     "step3": "Clique em \"Obter links de download\" e aguarde um momento.",
-    "step4": "Escolha MP4 (com ou sem marca d'água) ou MP3 e baixe.",
+    "step4": "Escolha MP4 (com ou sem marca d'água) e baixe.",
     "metaTitle": "CosmoVid - Baixar TikTok HD | Sem marca d'água | Grátis",
-    "metaDescription": "Baixe vídeos do TikTok em HD com ou sem marca d'água. Baixador de TikTok grátis. MP4 e MP3. Sem cadastro."
+    "metaDescription": "Baixe vídeos do TikTok em HD com ou sem marca d'água. Baixador de TikTok grátis. MP4. Sem cadastro."
   },
   "faq": {
     "title": "FAQ",
     "howItWorks": "Como funciona",
-    "howItWorksAnswer": "Cole um link de vídeo do TikTok na página inicial e clique em \"Obter links de download\". Buscamos o vídeo e mostramos links diretos para MP4 e MP3.",
+    "howItWorksAnswer": "Cole um link de vídeo do TikTok na página inicial e clique em \"Obter links de download\". Buscamos o vídeo e mostramos links diretos para MP4 (com ou sem marca d'água).",
     "legal": "Aviso legal",
     "legalAnswer": "Esta ferramenta é apenas para uso pessoal. Respeite os direitos autorais e os Termos de Serviço do TikTok. Não estamos afiliados ao TikTok.",
     "metaTitle": "FAQ | CosmoVid",
@@ -31,7 +30,7 @@
   },
   "about": {
     "title": "Sobre",
-    "intro": "Oferecemos uma forma simples e rápida de baixar vídeos do TikTok em HD — com ou sem marca d'água — e em MP3.",
+    "intro": "Oferecemos uma forma simples e rápida de baixar vídeos do TikTok em HD — com ou sem marca d'água.",
     "contact": "Contato",
     "contactText": "Para suporte ou feedback, use o formulário ou entre em contato.",
     "metaTitle": "Sobre e Contato | CosmoVid",
@@ -41,14 +40,14 @@
     "title": "Ferramentas de vídeo",
     "intro": "Ferramentas gratuitas para baixar e trabalhar com vídeos. Mais ferramentas em breve.",
     "toolTikTokTitle": "Baixador de TikTok",
-    "toolTikTokDesc": "Baixe vídeos do TikTok em HD como MP4 ou MP3. Cole um link e obtenha o download direto.",
+    "toolTikTokDesc": "Baixe vídeos do TikTok em HD como MP4. Cole um link e obtenha o download direto.",
     "toolShrinkTitle": "Redutor de vídeo",
     "toolShrinkDesc": "Comprima vídeos para reduzir o tamanho. Máx. 100MB. Saída: MP4, 720p.",
     "useTool": "Usar ferramenta",
     "comingSoon": "Em breve",
     "moreComing": "Mais ferramentas de vídeo em breve.",
     "metaTitle": "Ferramentas de vídeo | CosmoVid",
-    "metaDescription": "Ferramentas de vídeo gratuitas: baixador de TikTok e mais. Baixe vídeos em HD, converta para MP3 e mais."
+    "metaDescription": "Ferramentas de vídeo gratuitas: baixador de TikTok e mais. Baixe vídeos em HD."
   },
   "shrink": {
     "title": "Redutor de vídeo",

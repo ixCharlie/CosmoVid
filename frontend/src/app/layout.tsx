@@ -23,14 +23,13 @@ export const metadata: Metadata = {
     template: '%s | CosmoVid',
   },
   description:
-    'Download TikTok videos in HD with or without watermark. Free TikTok downloader. MP4 and MP3. No app required. Keywords: TikTok downloader HD, no watermark.',
+    'Download TikTok videos in HD with or without watermark. Free TikTok downloader. MP4. No app required. Keywords: TikTok downloader HD, no watermark.',
   keywords: [
     'TikTok downloader',
     'TikTok downloader HD',
     'TikTok no watermark',
     'download TikTok video',
     'TikTok to MP4',
-    'TikTok to MP3',
     'تحميل تيك توك',
     'تحميل فيديو تيك توك',
     'تيك توك بدون علامة مائية',
