@@ -40,6 +40,7 @@ export const metadata: Metadata = {
     alternateLocale: ['ar_AR'],
   },
   robots: { index: true, follow: true },
+  icons: { icon: '/NEW.png' },
 };
 
 export default function RootLayout({

@@ -41,6 +41,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Exclude static assets so /NEW.png etc. are served without locale redirect
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|api|NEW\\.png).*)'],
+  // Exclude static assets so favicon and /NEW.png etc. are served without locale redirect
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|api|NEW\\.png|favicon).*)'],
 };
