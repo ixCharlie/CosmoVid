@@ -16,8 +16,8 @@
     "step2": "将链接粘贴到上方输入框。",
     "step3": "点击「获取下载链接」并稍等片刻。",
     "step4": "选择 MP4（带/无水印）并下载。",
-    "metaTitle": "CosmoVid - TikTok 高清下载 | 无水印 | 免费",
-    "metaDescription": "高清下载 TikTok 视频，带水印或无水印。免费 TikTok 下载器。MP4。无需注册。"
+    "metaTitle": "TikTok 高清下载 — 无水印视频免费保存 | CosmoVid",
+    "metaDescription": "一键保存 TikTok 高清视频。无水印、无需应用 — 免费。粘贴链接即可获取 MP4。快速，支持所有设备。"
   },
   "faq": {
     "title": "常见问题",
@@ -25,16 +25,16 @@
     "howItWorksAnswer": "在首页输入框粘贴 TikTok 视频链接并点击「获取下载链接」。我们会获取视频并显示 MP4（带/无水印）的直接下载链接。",
     "legal": "法律声明",
     "legalAnswer": "本工具仅供个人使用。请尊重版权与 TikTok 服务条款。我们与 TikTok 无隶属关系。",
-    "metaTitle": "常见问题 | CosmoVid",
-    "metaDescription": "如何使用 TikTok 下载器。法律声明与常见问题。"
+    "metaTitle": "常见问题：如何下载 TikTok 高清无水印 | CosmoVid",
+    "metaDescription": "如何保存 TikTok 高清视频（带/无水印）。分步指南、法律说明与常见问题。免费 TikTok 下载器。"
   },
   "about": {
     "title": "关于",
     "intro": "我们提供简单、快速的方式下载 TikTok 高清视频 — 带水印或无水印。",
     "contact": "联系我们",
     "contactText": "如需支持或反馈，请使用表单或邮件联系我们。",
-    "metaTitle": "关于与联系 | CosmoVid",
-    "metaDescription": "关于我们的 TikTok 下载器及如何联系我们。"
+    "metaTitle": "关于 CosmoVid — 免费 TikTok 下载器与联系 | CosmoVid",
+    "metaDescription": "关于 CosmoVid：免费 TikTok 高清下载器。联系我们。无需应用，无水印。"
   },
   "tools": {
     "title": "视频工具",
@@ -46,8 +46,8 @@
     "useTool": "使用工具",
     "comingSoon": "即将推出",
     "moreComing": "更多视频工具即将推出。",
-    "metaTitle": "视频工具 | CosmoVid",
-    "metaDescription": "免费视频工具：TikTok 下载器等。高清下载。"
+    "metaTitle": "免费视频工具 — TikTok 下载器与压缩 | CosmoVid",
+    "metaDescription": "免费视频工具：TikTok 高清下载器与视频压缩。保存 TikTok、压缩 MP4 — 无需注册。"
   },
   "shrink": {
     "title": "视频压缩",
@@ -61,8 +61,8 @@
     "errorNetwork": "出错了，请重试。",
     "success": "完成！文件将自动下载。",
     "backToTools": "返回工具",
-    "metaTitle": "视频压缩 | CosmoVid",
-    "metaDescription": "在线压缩视频、减小体积。最大 100MB。免费视频压缩工具。"
+    "metaTitle": "免费视频压缩 — 在线压缩 MP4 最大 100MB | CosmoVid",
+    "metaDescription": "在线免费压缩视频。缩小 MP4 体积，最大 100MB。输出 720p。无需注册。"
   },
   "common": {
     "backToHome": "返回首页",

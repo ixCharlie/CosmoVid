@@ -275,7 +275,34 @@ sudo ufw status
 
 ---
 
-## 14. Useful Commands
+## 14. Rebuild frontend on server (fix “Network error” on download)
+
+If users see **“Network error. Please check your connection and try again.”** when downloading, the frontend was likely built with the wrong API URL. Rebuild on the server:
+
+**Option A – API on same domain** (Nginx proxies `https://YourDomain.com/api` to the backend):
+
+```bash
+cd /var/www/tiktok-downloader
+git pull
+chmod +x scripts/rebuild-frontend-on-server.sh
+./scripts/rebuild-frontend-on-server.sh
+```
+
+Ensure your main Nginx server block has a `location /api { proxy_pass http://127.0.0.1:4000; ... }` (see “Alternative (API on same domain)” in section 10).
+
+**Option B – API on subdomain** (e.g. `https://api.CosmoVid.com`):
+
+```bash
+cd /var/www/tiktok-downloader
+git pull
+export NEXT_PUBLIC_API_URL=https://api.CosmoVid.com
+export NEXT_PUBLIC_SITE_URL=https://CosmoVid.com
+./scripts/rebuild-frontend-on-server.sh
+```
+
+---
+
+## 15. Useful Commands
 
 | Task              | Command                          |
 |-------------------|----------------------------------|
@@ -284,11 +311,11 @@ sudo ufw status
 | Restart backend   | `pm2 restart tiktok-api`         |
 | Restart frontend  | `pm2 restart tiktok-web`         |
 | Rebuild & restart | `cd backend && npm run build && pm2 restart tiktok-api` |
-| Frontend rebuild  | `cd frontend && npm run build && pm2 restart tiktok-web` |
+| Frontend rebuild  | `./scripts/rebuild-frontend-on-server.sh` (from repo root) |
 
 ---
 
-## Scaling (Future)
+## 16. Scaling (Future)
 
 - Add **Instagram Reels** or **YouTube Shorts** support by adding new routes (e.g. `/api/download/reels`, `/api/download/shorts`) and corresponding services.
 - Use a process manager (PM2 cluster) or run behind a load balancer for higher traffic.

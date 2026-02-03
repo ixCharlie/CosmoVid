@@ -83,7 +83,7 @@ cp .env.example .env.local   # if you have one
 npm run dev
 ```
 
-Open `http://localhost:3000`. Set `NEXT_PUBLIC_API_URL=http://localhost:4000` if the API runs elsewhere.
+Open `http://localhost:3000`. For local dev, create `frontend/.env.local` with `NEXT_PUBLIC_API_URL=http://localhost:4000` so the frontend can reach the backend (see `frontend/.env.example`).
 
 ### Environment Variables
 
