@@ -93,18 +93,32 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
   const videoVariant = links.mp4HdNoWatermark ? 'no_watermark' : 'watermark';
   const hasAnyLink = videoUrl || links.mp3;
 
+  /** Sanitize video title for use as download filename; fallback to generic name. */
+  function downloadFilename(ext: 'mp4' | 'mp3'): string {
+    const fallback = ext === 'mp3' ? 'tiktok-audio.mp3' : 'tiktok-video.mp4';
+    if (!title || typeof title !== 'string') return fallback;
+    const safe = title
+      .replace(/[/\\:*?"<>|]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 100);
+    if (!safe) return fallback;
+    return `${safe}.${ext}`;
+  }
+
   function DownloadButton({
     href,
     label,
     id,
     primary,
-  }: { href: string; label: string; id: string; primary?: boolean }) {
+    downloadName,
+  }: { href: string; label: string; id: string; primary?: boolean; downloadName: string }) {
     const isCopied = copiedId === id;
     return (
       <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
         <a
           href={href}
-          download={id.includes('mp3') ? 'tiktok-audio.mp3' : 'tiktok-video.mp4'}
+          download={downloadName}
           className={
             primary
               ? 'inline-flex items-center justify-center min-h-[44px] px-4 py-3 rounded-lg bg-charcoal dark:bg-cream text-cream dark:text-charcoal font-medium hover:opacity-90 transition-opacity flex-1 min-w-0 touch-manipulation text-sm sm:text-base'
@@ -160,6 +174,7 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
                   label={t('home.downloadVideo')}
                   id="mp4-video"
                   primary
+                  downloadName={downloadFilename('mp4')}
                 />
               )}
               {links.mp3 && (
@@ -167,6 +182,7 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
                   href={proxyDownloadUrl(result._submittedUrl, 'mp3', links.mp3)}
                   label={t('home.downloadMp3')}
                   id="mp3"
+                  downloadName={downloadFilename('mp3')}
                 />
               )}
             </div>
