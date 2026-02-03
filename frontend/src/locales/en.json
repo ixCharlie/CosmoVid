@@ -6,8 +6,13 @@
     "about": "About"
   },
   "home": {
+    "welcome": "Welcome",
     "title": "CosmoVid",
     "subtitle": "Download TikTok videos in HD — with or without watermark. Free & fast.",
+    "getStarted": "Get started",
+    "learnMore": "Learn more",
+    "faqLink": "FAQ",
+    "aboutLink": "About",
     "placeholder": "Paste TikTok video URL here...",
     "urlValid": "Valid TikTok URL",
     "urlInvalid": "Invalid TikTok URL",
@@ -41,36 +46,24 @@
     "metaTitle": "About CosmoVid — Free TikTok Downloader & Contact",
     "metaDescription": "About CosmoVid: free TikTok downloader for HD video. Contact us for support. No app, no watermark."
   },
+  "tiktok": {
+    "metaTitle": "TikTok Downloader HD — Save Videos Without Watermark Free | CosmoVid",
+    "metaDescription": "Download TikTok videos in HD. With or without watermark. Paste link, get MP4. Free and fast."
+  },
   "tools": {
     "title": "Video tools",
-    "intro": "Free online tools for downloading and working with videos. More tools coming soon.",
+    "intro": "Free online TikTok downloader. Save videos in HD with or without watermark.",
     "toolTikTokTitle": "TikTok downloader",
     "toolTikTokDesc": "Download TikTok videos in HD as MP4. Paste a link and get direct download.",
-    "toolShrinkTitle": "Video shrinker",
-    "toolShrinkDesc": "Compress videos to reduce file size. Max 100MB upload. Output: MP4, 720p, smaller size.",
     "useTool": "Use tool",
     "comingSoon": "Coming soon",
     "moreComing": "More video tools coming soon.",
-    "metaTitle": "Free Video Tools — TikTok Downloader & Compressor | CosmoVid",
-    "metaDescription": "Free video tools: TikTok downloader HD and video compressor. Save TikTok, shrink MP4 — no sign-up."
-  },
-  "shrink": {
-    "title": "Video shrinker",
-    "intro": "Upload a video to compress it and reduce file size. Output is MP4 (up to 720p).",
-    "maxSize": "Max {{maxMb}}MB",
-    "chooseFile": "Choose video file",
-    "submit": "Shrink video",
-    "loading": "Compressing...",
-    "errorFileTooBig": "Video must be {{maxMb}}MB or less.",
-    "errorInvalid": "Please choose a valid video file.",
-    "errorNetwork": "Something went wrong. Please try again.",
-    "success": "Done! Your file will download automatically.",
-    "backToTools": "Back to tools",
-    "metaTitle": "Free Video Compressor — Shrink MP4 Online Up to 100MB | CosmoVid",
-    "metaDescription": "Compress videos online free. Shrink MP4 file size, max 100MB upload. Output 720p. No sign-up."
+    "metaTitle": "TikTok Downloader HD — Save Videos Without Watermark Free | CosmoVid",
+    "metaDescription": "Free TikTok downloader. Save videos in HD with or without watermark. Paste link, get MP4. No sign-up."
   },
   "common": {
     "backToHome": "Back to Home",
+    "backToTools": "Back to tools",
     "language": "Language",
     "adLabel": "Advertisement",
     "skipToContent": "Skip to main content",

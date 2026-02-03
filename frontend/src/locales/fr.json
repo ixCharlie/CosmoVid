@@ -1,8 +1,13 @@
 {
   "nav": { "home": "Accueil", "tools": "Outils", "faq": "FAQ", "about": "À propos" },
   "home": {
+    "welcome": "Bienvenue",
     "title": "CosmoVid",
     "subtitle": "Téléchargez des vidéos TikTok en HD — avec ou sans filigrane. Gratuit et rapide.",
+    "getStarted": "Commencer",
+    "learnMore": "En savoir plus",
+    "faqLink": "FAQ",
+    "aboutLink": "À propos",
     "placeholder": "Collez le lien de la vidéo TikTok ici...",
     "urlValid": "Lien TikTok valide",
     "urlInvalid": "Lien TikTok invalide",
@@ -36,36 +41,24 @@
     "metaTitle": "À propos CosmoVid — Téléchargeur TikTok gratuit et contact | CosmoVid",
     "metaDescription": "À propos de CosmoVid : téléchargeur TikTok gratuit pour vidéo HD. Contactez-nous. Sans app, sans filigrane."
   },
+  "tiktok": {
+    "metaTitle": "Téléchargeur TikTok HD — Vidéos sans filigrane gratuit | CosmoVid",
+    "metaDescription": "Téléchargez des vidéos TikTok en HD. Avec ou sans filigrane. Collez le lien, obtenez MP4. Gratuit et rapide."
+  },
   "tools": {
     "title": "Outils vidéo",
-    "intro": "Outils en ligne gratuits pour télécharger et travailler avec des vidéos. D'autres outils bientôt.",
+    "intro": "Téléchargeur TikTok gratuit. Enregistrez des vidéos en HD avec ou sans filigrane.",
     "toolTikTokTitle": "Téléchargeur TikTok",
     "toolTikTokDesc": "Téléchargez des vidéos TikTok en HD en MP4. Collez un lien et obtenez le téléchargement direct.",
-    "toolShrinkTitle": "Réducteur de vidéo",
-    "toolShrinkDesc": "Compressez des vidéos pour réduire la taille. Max 100 Mo. Sortie : MP4, 720p.",
     "useTool": "Utiliser l'outil",
     "comingSoon": "Bientôt disponible",
     "moreComing": "D'autres outils vidéo bientôt.",
-    "metaTitle": "Outils vidéo gratuits — Téléchargeur TikTok et compresseur | CosmoVid",
-    "metaDescription": "Outils vidéo gratuits : téléchargeur TikTok HD et compresseur. Téléchargez TikTok, réduisez MP4 — sans inscription."
-  },
-  "shrink": {
-    "title": "Réducteur de vidéo",
-    "intro": "Uploadez une vidéo pour la compresser et réduire la taille. Sortie : MP4 (jusqu'à 720p).",
-    "maxSize": "Max {{maxMb}} Mo",
-    "chooseFile": "Choisir un fichier vidéo",
-    "submit": "Réduire la vidéo",
-    "loading": "Compression...",
-    "errorFileTooBig": "La vidéo doit faire {{maxMb}} Mo ou moins.",
-    "errorInvalid": "Choisissez un fichier vidéo valide.",
-    "errorNetwork": "Une erreur s'est produite. Réessayez.",
-    "success": "Terminé ! Le fichier se téléchargera automatiquement.",
-    "backToTools": "Retour aux outils",
-    "metaTitle": "Compresseur vidéo gratuit — Réduire MP4 en ligne jusqu'à 100 Mo | CosmoVid",
-    "metaDescription": "Compressez des vidéos en ligne gratuitement. Réduisez la taille MP4, max 100 Mo. Sortie 720p. Sans inscription."
+    "metaTitle": "Téléchargeur TikTok HD — Vidéos sans filigrane gratuit | CosmoVid",
+    "metaDescription": "Téléchargeur TikTok gratuit. Enregistrez des vidéos en HD avec ou sans filigrane. Collez le lien, obtenez MP4. Sans inscription."
   },
   "common": {
     "backToHome": "Retour à l'accueil",
+    "backToTools": "Retour aux outils",
     "language": "Langue",
     "adLabel": "Publicité",
     "skipToContent": "Aller au contenu",

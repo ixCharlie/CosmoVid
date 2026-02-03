@@ -101,13 +101,6 @@ yt-dlp --version
 
 Or with pip: `sudo pip3 install yt-dlp`
 
-**Install ffmpeg (required for Video Shrinker tool):**
-
-```bash
-sudo apt install -y ffmpeg
-ffmpeg -version
-```
-
 ---
 
 ## 8. Backend Setup
@@ -123,7 +116,6 @@ Create environment file (optional):
 ```bash
 echo "PORT=4000" > .env
 # If yt-dlp is not in PATH: echo "YT_DLP_PATH=/usr/local/bin/yt-dlp" >> .env
-# Video shrink tool: max upload size in MB (default 100; max 500). Example: SHRINK_MAX_MB=100
 ```
 
 Start with PM2:

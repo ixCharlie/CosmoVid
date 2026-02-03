@@ -1,8 +1,13 @@
 {
   "nav": { "home": "Inicio", "tools": "Herramientas", "faq": "FAQ", "about": "Acerca de" },
   "home": {
+    "welcome": "Bienvenido",
     "title": "CosmoVid",
     "subtitle": "Descarga videos de TikTok en HD — con o sin marca de agua. Gratis y rápido.",
+    "getStarted": "Empezar",
+    "learnMore": "Saber más",
+    "faqLink": "FAQ",
+    "aboutLink": "Acerca de",
     "placeholder": "Pega aquí el enlace del video de TikTok...",
     "urlValid": "Enlace de TikTok válido",
     "urlInvalid": "Enlace de TikTok no válido",
@@ -36,36 +41,24 @@
     "metaTitle": "Sobre CosmoVid — Descargador TikTok gratis y contacto | CosmoVid",
     "metaDescription": "Sobre CosmoVid: descargador TikTok gratis para video HD. Contáctanos. Sin app, sin marca de agua."
   },
+  "tiktok": {
+    "metaTitle": "Descargar TikTok HD — Videos sin marca de agua gratis | CosmoVid",
+    "metaDescription": "Descarga videos de TikTok en HD. Con o sin marca de agua. Pega el enlace, obtén MP4. Gratis y rápido."
+  },
   "tools": {
     "title": "Herramientas de video",
-    "intro": "Herramientas gratuitas para descargar y trabajar con videos. Más herramientas próximamente.",
+    "intro": "Descargador de TikTok gratuito. Guarda videos en HD con o sin marca de agua.",
     "toolTikTokTitle": "Descargador de TikTok",
     "toolTikTokDesc": "Descarga videos de TikTok en HD como MP4. Pega un enlace y obtén la descarga directa.",
-    "toolShrinkTitle": "Comprimir video",
-    "toolShrinkDesc": "Comprime videos para reducir el tamaño. Máx. 100MB. Salida: MP4, 720p.",
     "useTool": "Usar herramienta",
     "comingSoon": "Próximamente",
     "moreComing": "Más herramientas de video próximamente.",
-    "metaTitle": "Herramientas de video gratis — Descargador TikTok y compresor | CosmoVid",
-    "metaDescription": "Herramientas gratis: descargador TikTok HD y compresor de video. Descarga TikTok, reduce MP4 — sin registro."
-  },
-  "shrink": {
-    "title": "Comprimir video",
-    "intro": "Sube un video para comprimirlo y reducir el tamaño. Salida: MP4 (hasta 720p).",
-    "maxSize": "Máx. {{maxMb}}MB",
-    "chooseFile": "Elegir archivo de video",
-    "submit": "Comprimir video",
-    "loading": "Comprimiendo...",
-    "errorFileTooBig": "El video debe ser de {{maxMb}}MB o menos.",
-    "errorInvalid": "Elige un archivo de video válido.",
-    "errorNetwork": "Algo salió mal. Intenta de nuevo.",
-    "success": "¡Listo! El archivo se descargará automáticamente.",
-    "backToTools": "Volver a herramientas",
-    "metaTitle": "Compresor de video gratis — Reducir MP4 online hasta 100MB | CosmoVid",
-    "metaDescription": "Comprime videos online gratis. Reducir tamaño MP4, máx. 100MB. Salida 720p. Sin registro."
+    "metaTitle": "Descargar TikTok HD — Videos sin marca de agua gratis | CosmoVid",
+    "metaDescription": "Descargador de TikTok gratuito. Guarda videos en HD con o sin marca de agua. Pega el enlace, obtén MP4. Sin registro."
   },
   "common": {
     "backToHome": "Volver al inicio",
+    "backToTools": "Volver a herramientas",
     "language": "Idioma",
     "adLabel": "Publicidad",
     "skipToContent": "Saltar al contenido",

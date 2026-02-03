@@ -10,15 +10,16 @@ import zh from '@/locales/zh.json';
 import hi from '@/locales/hi.json';
 import ru from '@/locales/ru.json';
 
-export type PageKey = 'home' | 'faq' | 'about' | 'shrink';
+export type PageKey = 'home' | 'tools' | 'faq' | 'about' | 'tiktok';
 
 type MetaMessages = Record<
   Locale,
   {
     home: { metaTitle: string; metaDescription: string };
+    tools: { metaTitle: string; metaDescription: string };
     faq: { metaTitle: string; metaDescription: string };
     about: { metaTitle: string; metaDescription: string };
-    shrink: { metaTitle: string; metaDescription: string };
+    tiktok: { metaTitle: string; metaDescription: string };
   }
 >;
 
@@ -57,17 +58,22 @@ function buildLanguagesForPage(page: PageKey): Record<string, string> {
   return languages;
 }
 
+/** Path segment for a page (used in canonical/alternates). */
+function getPathSegment(page: PageKey): string {
+  return page === 'home' ? '' : `/${page}`;
+}
+
 /** Path-based locale URLs for all supported languages (SEO hreflang). */
 export function getAlternatesForPage(page: PageKey): { canonical: string; languages: Record<string, string> } {
   return {
-    canonical: `${baseUrl}/en${page === 'home' ? '' : `/${page}`}`,
+    canonical: `${baseUrl}/en${getPathSegment(page)}`,
     languages: buildLanguagesForPage(page),
   };
 }
 
 /** Build canonical and hreflang for the current locale and page. */
 export function getAlternatesForPageWithLocale(locale: Locale, page: PageKey): { canonical: string; languages: Record<string, string> } {
-  const pathSegment = page === 'home' ? '' : `/${page}`;
+  const pathSegment = getPathSegment(page);
   const canonical = `${baseUrl}/${locale}${pathSegment}`;
   return {
     canonical,

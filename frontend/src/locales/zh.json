@@ -1,8 +1,13 @@
 {
   "nav": { "home": "首页", "tools": "工具", "faq": "常见问题", "about": "关于" },
   "home": {
+    "welcome": "欢迎",
     "title": "CosmoVid",
     "subtitle": "高清下载 TikTok 视频 — 带水印或无水印。免费、快速。",
+    "getStarted": "开始使用",
+    "learnMore": "了解更多",
+    "faqLink": "常见问题",
+    "aboutLink": "关于",
     "placeholder": "在此粘贴 TikTok 视频链接...",
     "urlValid": "有效的 TikTok 链接",
     "urlInvalid": "无效的 TikTok 链接",
@@ -36,36 +41,24 @@
     "metaTitle": "关于 CosmoVid — 免费 TikTok 下载器与联系 | CosmoVid",
     "metaDescription": "关于 CosmoVid：免费 TikTok 高清下载器。联系我们。无需应用，无水印。"
   },
+  "tiktok": {
+    "metaTitle": "TikTok 高清下载 — 无水印视频免费保存 | CosmoVid",
+    "metaDescription": "高清下载 TikTok 视频。带水印或无水印。粘贴链接即可获取 MP4。免费、快速。"
+  },
   "tools": {
     "title": "视频工具",
-    "intro": "免费在线视频下载与处理工具。更多工具即将推出。",
+    "intro": "免费 TikTok 下载器。保存高清视频，带水印或无水印。",
     "toolTikTokTitle": "TikTok 下载器",
     "toolTikTokDesc": "高清下载 TikTok 视频为 MP4。粘贴链接即可直接下载。",
-    "toolShrinkTitle": "视频压缩",
-    "toolShrinkDesc": "压缩视频以减小体积。最大 100MB。输出：MP4、720p。",
     "useTool": "使用工具",
     "comingSoon": "即将推出",
     "moreComing": "更多视频工具即将推出。",
-    "metaTitle": "免费视频工具 — TikTok 下载器与压缩 | CosmoVid",
-    "metaDescription": "免费视频工具：TikTok 高清下载器与视频压缩。保存 TikTok、压缩 MP4 — 无需注册。"
-  },
-  "shrink": {
-    "title": "视频压缩",
-    "intro": "上传视频以压缩并减小体积。输出为 MP4（最高 720p）。",
-    "maxSize": "最大 {{maxMb}}MB",
-    "chooseFile": "选择视频文件",
-    "submit": "压缩视频",
-    "loading": "压缩中...",
-    "errorFileTooBig": "视频须为 {{maxMb}}MB 或更小。",
-    "errorInvalid": "请选择有效的视频文件。",
-    "errorNetwork": "出错了，请重试。",
-    "success": "完成！文件将自动下载。",
-    "backToTools": "返回工具",
-    "metaTitle": "免费视频压缩 — 在线压缩 MP4 最大 100MB | CosmoVid",
-    "metaDescription": "在线免费压缩视频。缩小 MP4 体积，最大 100MB。输出 720p。无需注册。"
+    "metaTitle": "TikTok 高清下载 — 无水印视频免费保存 | CosmoVid",
+    "metaDescription": "免费 TikTok 下载器。保存高清视频，带水印或无水印。粘贴链接获取 MP4。无需注册。"
   },
   "common": {
     "backToHome": "返回首页",
+    "backToTools": "返回工具",
     "language": "语言",
     "adLabel": "广告",
     "skipToContent": "跳到主内容",

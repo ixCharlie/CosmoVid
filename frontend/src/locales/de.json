@@ -1,8 +1,13 @@
 {
   "nav": { "home": "Start", "tools": "Tools", "faq": "FAQ", "about": "Über uns" },
   "home": {
+    "welcome": "Willkommen",
     "title": "CosmoVid",
     "subtitle": "Lade TikTok-Videos in HD herunter — mit oder ohne Wasserzeichen. Kostenlos und schnell.",
+    "getStarted": "Loslegen",
+    "learnMore": "Mehr erfahren",
+    "faqLink": "FAQ",
+    "aboutLink": "Über uns",
     "placeholder": "TikTok-Videolink hier einfügen...",
     "urlValid": "Gültiger TikTok-Link",
     "urlInvalid": "Ungültiger TikTok-Link",
@@ -36,36 +41,24 @@
     "metaTitle": "Über CosmoVid — Kostenloser TikTok-Downloader & Kontakt",
     "metaDescription": "Über CosmoVid: kostenloser TikTok-Downloader für HD-Videos. Kontakt. Keine App, kein Wasserzeichen."
   },
+  "tiktok": {
+    "metaTitle": "TikTok Downloader HD — Videos ohne Wasserzeichen kostenlos | CosmoVid",
+    "metaDescription": "TikTok-Videos in HD herunterladen. Mit oder ohne Wasserzeichen. Link einfügen, MP4 erhalten. Kostenlos und schnell."
+  },
   "tools": {
     "title": "Video-Tools",
-    "intro": "Kostenlose Online-Tools zum Herunterladen und Bearbeiten von Videos. Weitere Tools demnächst.",
+    "intro": "Kostenloser TikTok-Downloader. Videos in HD mit oder ohne Wasserzeichen speichern.",
     "toolTikTokTitle": "TikTok-Downloader",
     "toolTikTokDesc": "Lade TikTok-Videos in HD als MP4 herunter. Link einfügen und direkt herunterladen.",
-    "toolShrinkTitle": "Video verkleinern",
-    "toolShrinkDesc": "Videos komprimieren, um die Dateigröße zu reduzieren. Max. 100 MB. Ausgabe: MP4, 720p.",
     "useTool": "Tool nutzen",
     "comingSoon": "Demnächst",
     "moreComing": "Weitere Video-Tools demnächst.",
-    "metaTitle": "Kostenlose Video-Tools — TikTok-Downloader & Kompressor | CosmoVid",
-    "metaDescription": "Kostenlose Video-Tools: TikTok-Downloader HD und Video-Kompressor. Keine Anmeldung."
-  },
-  "shrink": {
-    "title": "Video verkleinern",
-    "intro": "Lade ein Video hoch, um es zu komprimieren und die Größe zu reduzieren. Ausgabe: MP4 (bis 720p).",
-    "maxSize": "Max. {{maxMb}} MB",
-    "chooseFile": "Video auswählen",
-    "submit": "Video verkleinern",
-    "loading": "Wird komprimiert...",
-    "errorFileTooBig": "Das Video darf maximal {{maxMb}} MB groß sein.",
-    "errorInvalid": "Bitte wähle eine gültige Videodatei.",
-    "errorNetwork": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
-    "success": "Fertig! Die Datei wird automatisch heruntergeladen.",
-    "backToTools": "Zurück zu den Tools",
-    "metaTitle": "Kostenloser Video-Kompressor — MP4 online verkleinern | CosmoVid",
-    "metaDescription": "Videos online kostenlos komprimieren. MP4 verkleinern, max. 100 MB. Ausgabe 720p. Keine Anmeldung."
+    "metaTitle": "TikTok Downloader HD — Videos ohne Wasserzeichen kostenlos | CosmoVid",
+    "metaDescription": "Kostenloser TikTok-Downloader. Videos in HD mit oder ohne Wasserzeichen speichern. Link einfügen, MP4 erhalten. Keine Anmeldung."
   },
   "common": {
     "backToHome": "Zur Startseite",
+    "backToTools": "Zurück zu den Tools",
     "language": "Sprache",
     "adLabel": "Werbung",
     "skipToContent": "Zum Inhalt",

@@ -25,14 +25,17 @@ export function LanguagePicker() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-cream dark:bg-charcoal theme-fade">
       <div className="text-center max-w-2xl">
-        <h1 className="font-display text-2xl sm:text-3xl text-charcoal dark:text-cream tracking-tight mb-2">
+        <p className="text-gold font-medium text-sm uppercase tracking-wider mb-4">
+          Welcome
+        </p>
+        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl text-charcoal dark:text-cream tracking-tight mb-3">
           CosmoVid
         </h1>
-        <p className="text-lg sm:text-xl text-charcoal dark:text-cream font-medium mb-1">
+        <p className="text-lg sm:text-xl text-charcoal dark:text-cream font-medium mb-2">
           Download TikTok videos in HD — with or without watermark. Free &amp; fast.
         </p>
         <p className="text-stone dark:text-stone/80 text-sm mb-8">
-          Choose your language
+          Choose your language to get started
         </p>
         <nav
           className="flex flex-wrap gap-3 justify-center"
