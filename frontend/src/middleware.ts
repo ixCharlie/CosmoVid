@@ -1,40 +1,45 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { isLocale, defaultLocale } from '@/lib/i18n';
+import { COOKIE_NAME } from '@/lib/locale-preference';
 
 const LOCALE_HEADER = 'x-locale';
-type Locale = 'en' | 'ar';
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const segment = pathname.split('/')[1];
 
-  // Root: language picker — no redirect
+  // Root: check stored preference and redirect, or allow (client will auto-detect)
   if (pathname === '/') {
+    const stored = request.cookies.get(COOKIE_NAME)?.value;
+    const locale = stored && isLocale(stored) ? stored : null;
+    if (locale) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${locale}`;
+      const response = NextResponse.redirect(url, 302);
+      response.headers.set(LOCALE_HEADER, locale);
+      return response;
+    }
     const response = NextResponse.next();
-    response.headers.set(LOCALE_HEADER, 'en');
+    response.headers.set(LOCALE_HEADER, defaultLocale);
     return response;
   }
 
-  // Explicit locale URLs: /en, /ar, /en/faq, /ar/about, etc.
-  if (segment === 'en' || segment === 'ar') {
+  // Explicit locale URLs: /en, /ar, /es, /fr, etc.
+  if (segment && isLocale(segment)) {
     const response = NextResponse.next();
     response.headers.set(LOCALE_HEADER, segment);
     return response;
   }
 
-  // No locale: redirect to English version (keeps en/ar on separate URLs)
-  const newUrl = request.nextUrl.clone();
-  newUrl.pathname = `/en${pathname === '/' ? '' : pathname}`;
-  const response = NextResponse.redirect(newUrl, 302);
-  response.headers.set(LOCALE_HEADER, 'en');
+  // Path without supported locale: redirect to default
+  const url = request.nextUrl.clone();
+  url.pathname = `/${defaultLocale}${pathname === '/' ? '' : pathname}`;
+  const response = NextResponse.redirect(url, 302);
+  response.headers.set(LOCALE_HEADER, defaultLocale);
   return response;
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except static files and api
-     */
-    '/((?!_next/static|_next/image|favicon.ico|api).*)',
-  ],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|api).*)'],
 };

@@ -30,7 +30,7 @@ export function HomeContent() {
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 theme-fade">
       <section className="animate-fade-in text-center mb-10 md:mb-14">
         <h1 className="font-display text-3xl sm:text-4xl md:text-5xl text-charcoal dark:text-cream tracking-tight mb-3">
           {t('home.title')}

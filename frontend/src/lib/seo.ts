@@ -1,13 +1,42 @@
 import type { Locale } from '@/lib/i18n';
+import { locales, defaultLocale } from '@/lib/i18n';
 import en from '@/locales/en.json';
 import ar from '@/locales/ar.json';
+import es from '@/locales/es.json';
+import fr from '@/locales/fr.json';
+import de from '@/locales/de.json';
+import pt from '@/locales/pt.json';
+import zh from '@/locales/zh.json';
+import hi from '@/locales/hi.json';
+import ru from '@/locales/ru.json';
 
-export type PageKey = 'home' | 'faq' | 'about';
+export type PageKey = 'home' | 'faq' | 'about' | 'tools' | 'shrink';
 
-const messages = { en, ar } as Record<Locale, { home: { metaTitle: string; metaDescription: string }; faq: { metaTitle: string; metaDescription: string }; about: { metaTitle: string; metaDescription: string } }>;
+type MetaMessages = Record<
+  Locale,
+  {
+    home: { metaTitle: string; metaDescription: string };
+    faq: { metaTitle: string; metaDescription: string };
+    about: { metaTitle: string; metaDescription: string };
+    tools: { metaTitle: string; metaDescription: string };
+    shrink: { metaTitle: string; metaDescription: string };
+  }
+>;
+
+const messages: MetaMessages = {
+  en: en as MetaMessages['en'],
+  ar: ar as MetaMessages['ar'],
+  es: es as MetaMessages['es'],
+  fr: fr as MetaMessages['fr'],
+  de: de as MetaMessages['de'],
+  pt: pt as MetaMessages['pt'],
+  zh: zh as MetaMessages['zh'],
+  hi: hi as MetaMessages['hi'],
+  ru: ru as MetaMessages['ru'],
+};
 
 export function getPageMeta(locale: Locale, page: PageKey): { title: string; description: string } {
-  const m = messages[locale] ?? messages.en;
+  const m = messages[locale] ?? messages[defaultLocale];
   const section = m[page];
   return {
     title: section.metaTitle,
@@ -15,44 +44,57 @@ export function getPageMeta(locale: Locale, page: PageKey): { title: string; des
   };
 }
 
-const baseUrl = () => process.env.NEXT_PUBLIC_SITE_URL || 'https://cosmovid.example.com';
+const baseUrl = () => (process.env.NEXT_PUBLIC_SITE_URL || 'https://cosmovid.example.com').replace(/\/$/, '');
 
-/** Path-based locale URLs: /en, /ar, /en/faq, /ar/faq, etc. */
+/** Build hreflang/languages object for all locales for a given page. */
+function buildLanguagesForPage(page: PageKey): Record<string, string> {
+  const pathSegment = page === 'home' ? '' : `/${page}`;
+  const languages: Record<string, string> = {
+    'x-default': `${baseUrl}/en${pathSegment}`,
+  };
+  for (const loc of locales) {
+    languages[loc] = `${baseUrl}/${loc}${pathSegment}`;
+  }
+  return languages;
+}
+
+/** Path-based locale URLs for all supported languages (SEO hreflang). */
 export function getAlternatesForPage(page: PageKey): { canonical: string; languages: Record<string, string> } {
-  const base = baseUrl().replace(/\/$/, '');
-  const pathEn = page === 'home' ? '' : page;
-  const pathAr = page === 'home' ? '' : page;
-  const urlEn = pathEn ? `${base}/en/${pathEn}` : `${base}/en`;
-  const urlAr = pathAr ? `${base}/ar/${pathAr}` : `${base}/ar`;
   return {
-    canonical: urlEn,
-    languages: {
-      'en': urlEn,
-      'ar': urlAr,
-      'x-default': urlEn,
-    },
+    canonical: `${baseUrl}/en${page === 'home' ? '' : `/${page}`}`,
+    languages: buildLanguagesForPage(page),
   };
 }
 
-/** Build canonical and languages for a given locale and page (for current page URL). */
+/** Build canonical and hreflang for the current locale and page. */
 export function getAlternatesForPageWithLocale(locale: Locale, page: PageKey): { canonical: string; languages: Record<string, string> } {
-  const base = baseUrl().replace(/\/$/, '');
   const pathSegment = page === 'home' ? '' : `/${page}`;
-  const urlEn = `${base}/en${pathSegment}`;
-  const urlAr = `${base}/ar${pathSegment}`;
-  const canonical = locale === 'ar' ? urlAr : urlEn;
+  const canonical = `${baseUrl}/${locale}${pathSegment}`;
   return {
     canonical,
-    languages: {
-      'en': urlEn,
-      'ar': urlAr,
-      'x-default': urlEn,
-    },
+    languages: buildLanguagesForPage(page),
   };
 }
 
+const OG_LOCALE_MAP: Record<Locale, string> = {
+  en: 'en_US',
+  ar: 'ar_AR',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  de: 'de_DE',
+  pt: 'pt_BR',
+  zh: 'zh_CN',
+  hi: 'hi_IN',
+  ru: 'ru_RU',
+};
+
 export function getOgLocale(locale: Locale): string {
-  return locale === 'ar' ? 'ar_AR' : 'en_US';
+  return OG_LOCALE_MAP[locale] ?? 'en_US';
+}
+
+/** All alternate locales for Open Graph (excluding current). */
+export function getOgAlternateLocales(currentLocale: Locale): string[] {
+  return locales.filter((l) => l !== currentLocale).map((l) => OG_LOCALE_MAP[l]);
 }
 
 export { baseUrl };

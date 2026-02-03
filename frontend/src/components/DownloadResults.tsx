@@ -89,7 +89,9 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
   }
 
   const { title, author, cover, links } = result;
-  const hasAnyLink = links.mp4HdWatermark || links.mp4HdNoWatermark || links.mp3;
+  const videoUrl = links.mp4HdNoWatermark || links.mp4HdWatermark;
+  const videoVariant = links.mp4HdNoWatermark ? 'no_watermark' : 'watermark';
+  const hasAnyLink = videoUrl || links.mp3;
 
   function DownloadButton({
     href,
@@ -152,19 +154,12 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
               <p className="font-display text-lg text-charcoal dark:text-cream mb-4 line-clamp-2">{title}</p>
             )}
             <div className="flex flex-col gap-3">
-              {links.mp4HdNoWatermark && (
+              {videoUrl && (
                 <DownloadButton
-                  href={proxyDownloadUrl(result._submittedUrl, 'no_watermark', links.mp4HdNoWatermark)}
-                  label={t('home.downloadHdNoWatermark')}
-                  id="mp4-no-wm"
+                  href={proxyDownloadUrl(result._submittedUrl, videoVariant, videoUrl)}
+                  label={t('home.downloadVideo')}
+                  id="mp4-video"
                   primary
-                />
-              )}
-              {links.mp4HdWatermark && (
-                <DownloadButton
-                  href={proxyDownloadUrl(result._submittedUrl, 'watermark', links.mp4HdWatermark)}
-                  label={t('home.downloadHdWatermark')}
-                  id="mp4-wm"
                 />
               )}
               {links.mp3 && (

@@ -16,6 +16,14 @@ html {
 body {
   @apply bg-cream text-charcoal antialiased;
   font-feature-settings: "kern" 1, "liga" 1;
+  transition: background-color 1.5s ease-in-out, color 1.5s ease-in-out;
+}
+
+/* Theme toggle: 1.5s fade for page content (match header) */
+.theme-fade,
+#main-content.theme-fade,
+#main-content.theme-fade * {
+  transition: background-color 1.5s ease-in-out, color 1.5s ease-in-out, border-color 1.5s ease-in-out;
 }
 
 .dark .ad-slot {

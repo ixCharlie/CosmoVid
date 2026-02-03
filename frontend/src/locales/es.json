@@ -1,0 +1,78 @@
+{
+  "nav": { "home": "Inicio", "tools": "Herramientas", "faq": "FAQ", "about": "Acerca de" },
+  "home": {
+    "title": "CosmoVid",
+    "subtitle": "Descarga videos de TikTok en HD — con o sin marca de agua. Gratis y rápido.",
+    "placeholder": "Pega aquí el enlace del video de TikTok...",
+    "urlValid": "Enlace de TikTok válido",
+    "urlInvalid": "Enlace de TikTok no válido",
+    "submit": "Obtener enlaces de descarga",
+    "loading": "Obteniendo video...",
+    "errorInvalid": "Introduce un enlace de TikTok válido.",
+    "downloadVideo": "Descargar video",
+    "downloadMp3": "Audio MP3",
+    "tryAnother": "Descargar otro video",
+    "howToUse": "Cómo usar",
+    "step1": "Abre TikTok y copia el enlace del video (compartir → Copiar enlace).",
+    "step2": "Pega el enlace en el cuadro de arriba.",
+    "step3": "Haz clic en \"Obtener enlaces de descarga\" y espera un momento.",
+    "step4": "Elige MP4 (con o sin marca de agua) o MP3 y descarga.",
+    "metaTitle": "CosmoVid - Descargar TikTok HD | Sin marca de agua | Gratis",
+    "metaDescription": "Descarga videos de TikTok en HD con o sin marca de agua. Descargador de TikTok gratis. MP4 y MP3. Sin registro."
+  },
+  "faq": {
+    "title": "FAQ",
+    "howItWorks": "Cómo funciona",
+    "howItWorksAnswer": "Pega un enlace de video de TikTok en la página principal y haz clic en \"Obtener enlaces de descarga\". Obtenemos el video y te mostramos enlaces directos para MP4 y MP3.",
+    "legal": "Aviso legal",
+    "legalAnswer": "Esta herramienta es solo para uso personal. Respeta los derechos de autor y los Términos de Servicio de TikTok. No redistribuyas el contenido descargado sin permiso. No estamos afiliados a TikTok.",
+    "metaTitle": "FAQ | CosmoVid",
+    "metaDescription": "Cómo usar el descargador de TikTok. Aviso legal y preguntas frecuentes."
+  },
+  "about": {
+    "title": "Acerca de",
+    "intro": "Ofrecemos una forma sencilla y rápida de descargar videos de TikTok en HD — con o sin marca de agua — y en MP3.",
+    "contact": "Contacto",
+    "contactText": "Para soporte o comentarios, usa el formulario o escríbenos.",
+    "metaTitle": "Acerca de y Contacto | CosmoVid",
+    "metaDescription": "Sobre nuestro descargador de TikTok y cómo contactarnos."
+  },
+  "tools": {
+    "title": "Herramientas de video",
+    "intro": "Herramientas gratuitas para descargar y trabajar con videos. Más herramientas próximamente.",
+    "toolTikTokTitle": "Descargador de TikTok",
+    "toolTikTokDesc": "Descarga videos de TikTok en HD como MP4 o MP3. Pega un enlace y obtén la descarga directa.",
+    "toolShrinkTitle": "Comprimir video",
+    "toolShrinkDesc": "Comprime videos para reducir el tamaño. Máx. 100MB. Salida: MP4, 720p.",
+    "useTool": "Usar herramienta",
+    "moreComing": "Más herramientas de video próximamente.",
+    "metaTitle": "Herramientas de video | CosmoVid",
+    "metaDescription": "Herramientas de video gratis: descargador de TikTok y más. Descarga videos en HD, convierte a MP3 y más."
+  },
+  "shrink": {
+    "title": "Comprimir video",
+    "intro": "Sube un video para comprimirlo y reducir el tamaño. Salida: MP4 (hasta 720p).",
+    "maxSize": "Máx. {{maxMb}}MB",
+    "chooseFile": "Elegir archivo de video",
+    "submit": "Comprimir video",
+    "loading": "Comprimiendo...",
+    "errorFileTooBig": "El video debe ser de {{maxMb}}MB o menos.",
+    "errorInvalid": "Elige un archivo de video válido.",
+    "errorNetwork": "Algo salió mal. Intenta de nuevo.",
+    "success": "¡Listo! El archivo se descargará automáticamente.",
+    "backToTools": "Volver a herramientas",
+    "metaTitle": "Comprimir video | CosmoVid",
+    "metaDescription": "Comprime y reduce videos en línea. Hasta 100MB. Compresor de video gratis."
+  },
+  "common": {
+    "backToHome": "Volver al inicio",
+    "language": "Idioma",
+    "adLabel": "Publicidad",
+    "skipToContent": "Saltar al contenido",
+    "darkMode": "Modo oscuro",
+    "lightMode": "Modo claro",
+    "copyLink": "Copiar enlace",
+    "copied": "¡Copiado!",
+    "retry": "Reintentar con el mismo enlace"
+  }
+}

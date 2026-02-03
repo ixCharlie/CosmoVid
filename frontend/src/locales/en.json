@@ -1,6 +1,7 @@
 {
   "nav": {
     "home": "Home",
+    "tools": "Tools",
     "faq": "FAQ",
     "about": "About"
   },
@@ -13,8 +14,7 @@
     "submit": "Get Download Links",
     "loading": "Fetching video...",
     "errorInvalid": "Please enter a valid TikTok URL.",
-    "downloadHdWatermark": "MP4 HD (with watermark)",
-    "downloadHdNoWatermark": "MP4 HD (no watermark)",
+    "downloadVideo": "Download video",
     "downloadMp3": "MP3 Audio",
     "tryAnother": "Download another video",
     "howToUse": "How to use",
@@ -41,6 +41,33 @@
     "contactText": "For support or feedback, use the form below or email us.",
     "metaTitle": "About & Contact | CosmoVid",
     "metaDescription": "About our TikTok downloader and how to contact us."
+  },
+  "tools": {
+    "title": "Video tools",
+    "intro": "Free online tools for downloading and working with videos. More tools coming soon.",
+    "toolTikTokTitle": "TikTok downloader",
+    "toolTikTokDesc": "Download TikTok videos in HD as MP4 or MP3. Paste a link and get direct download.",
+    "toolShrinkTitle": "Video shrinker",
+    "toolShrinkDesc": "Compress videos to reduce file size. Max 100MB upload. Output: MP4, 720p, smaller size.",
+    "useTool": "Use tool",
+    "moreComing": "More video tools coming soon.",
+    "metaTitle": "Video tools | CosmoVid",
+    "metaDescription": "Free video tools: TikTok downloader and more. Download videos in HD, convert to MP3, and more."
+  },
+  "shrink": {
+    "title": "Video shrinker",
+    "intro": "Upload a video to compress it and reduce file size. Output is MP4 (up to 720p).",
+    "maxSize": "Max {{maxMb}}MB",
+    "chooseFile": "Choose video file",
+    "submit": "Shrink video",
+    "loading": "Compressing...",
+    "errorFileTooBig": "Video must be {{maxMb}}MB or less.",
+    "errorInvalid": "Please choose a valid video file.",
+    "errorNetwork": "Something went wrong. Please try again.",
+    "success": "Done! Your file will download automatically.",
+    "backToTools": "Back to tools",
+    "metaTitle": "Video shrinker | CosmoVid",
+    "metaDescription": "Compress and shrink videos online. Reduce file size up to 100MB. Free video compressor."
   },
   "common": {
     "backToHome": "Back to Home",

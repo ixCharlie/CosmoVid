@@ -6,10 +6,10 @@ import { getTranslations } from '@/lib/translations';
 import type { Locale } from '@/lib/i18n';
 
 interface FooterProps {
-  defaultLocale: Locale;
+  defaultLocale?: Locale;
 }
 
-export function Footer({ defaultLocale: _ }: FooterProps) {
+export function Footer({ defaultLocale: _ }: FooterProps = {}) {
   const { locale } = useLocale();
   const t = getTranslations(locale);
 
@@ -21,6 +21,9 @@ export function Footer({ defaultLocale: _ }: FooterProps) {
           <nav className="flex flex-wrap gap-6 text-sm" aria-label="Footer">
             <Link href={`/${locale}`} className="hover:text-gold transition-colors">
               {t('nav.home')}
+            </Link>
+            <Link href={`/${locale}/tools`} className="hover:text-gold transition-colors">
+              {t('nav.tools')}
             </Link>
             <Link href={`/${locale}/faq`} className="hover:text-gold transition-colors">
               {t('nav.faq')}

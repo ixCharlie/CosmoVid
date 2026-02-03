@@ -1,0 +1,78 @@
+{
+  "nav": { "home": "Accueil", "tools": "Outils", "faq": "FAQ", "about": "À propos" },
+  "home": {
+    "title": "CosmoVid",
+    "subtitle": "Téléchargez des vidéos TikTok en HD — avec ou sans filigrane. Gratuit et rapide.",
+    "placeholder": "Collez le lien de la vidéo TikTok ici...",
+    "urlValid": "Lien TikTok valide",
+    "urlInvalid": "Lien TikTok invalide",
+    "submit": "Obtenir les liens de téléchargement",
+    "loading": "Récupération de la vidéo...",
+    "errorInvalid": "Veuillez entrer un lien TikTok valide.",
+    "downloadVideo": "Télécharger la vidéo",
+    "downloadMp3": "Audio MP3",
+    "tryAnother": "Télécharger une autre vidéo",
+    "howToUse": "Comment utiliser",
+    "step1": "Ouvrez TikTok et copiez le lien de la vidéo (partager → Copier le lien).",
+    "step2": "Collez le lien dans la zone ci-dessus.",
+    "step3": "Cliquez sur \"Obtenir les liens\" et attendez un instant.",
+    "step4": "Choisissez MP4 (avec ou sans filigrane) ou MP3 et téléchargez.",
+    "metaTitle": "CosmoVid - Téléchargeur TikTok HD | Sans filigrane | Gratuit",
+    "metaDescription": "Téléchargez des vidéos TikTok en HD avec ou sans filigrane. Téléchargeur TikTok gratuit. MP4 et MP3. Sans inscription."
+  },
+  "faq": {
+    "title": "FAQ",
+    "howItWorks": "Comment ça marche",
+    "howItWorksAnswer": "Collez un lien de vidéo TikTok sur la page d'accueil et cliquez sur \"Obtenir les liens\". Nous récupérons la vidéo et affichons les liens directs pour MP4 et MP3.",
+    "legal": "Mentions légales",
+    "legalAnswer": "Cet outil est à usage personnel uniquement. Respectez le droit d'auteur et les Conditions d'utilisation de TikTok. Nous ne sommes pas affiliés à TikTok.",
+    "metaTitle": "FAQ | CosmoVid",
+    "metaDescription": "Comment utiliser le téléchargeur TikTok. Mentions légales et questions fréquentes."
+  },
+  "about": {
+    "title": "À propos",
+    "intro": "Nous proposons un moyen simple et rapide de télécharger des vidéos TikTok en HD — avec ou sans filigrane — et en MP3.",
+    "contact": "Contact",
+    "contactText": "Pour le support ou les retours, utilisez le formulaire ou contactez-nous.",
+    "metaTitle": "À propos et Contact | CosmoVid",
+    "metaDescription": "À propos de notre téléchargeur TikTok et comment nous contacter."
+  },
+  "tools": {
+    "title": "Outils vidéo",
+    "intro": "Outils en ligne gratuits pour télécharger et travailler avec des vidéos. D'autres outils bientôt.",
+    "toolTikTokTitle": "Téléchargeur TikTok",
+    "toolTikTokDesc": "Téléchargez des vidéos TikTok en HD en MP4 ou MP3. Collez un lien et obtenez le téléchargement direct.",
+    "toolShrinkTitle": "Réducteur de vidéo",
+    "toolShrinkDesc": "Compressez des vidéos pour réduire la taille. Max 100 Mo. Sortie : MP4, 720p.",
+    "useTool": "Utiliser l'outil",
+    "moreComing": "D'autres outils vidéo bientôt.",
+    "metaTitle": "Outils vidéo | CosmoVid",
+    "metaDescription": "Outils vidéo gratuits : téléchargeur TikTok et plus. Téléchargez en HD, convertissez en MP3 et plus."
+  },
+  "shrink": {
+    "title": "Réducteur de vidéo",
+    "intro": "Uploadez une vidéo pour la compresser et réduire la taille. Sortie : MP4 (jusqu'à 720p).",
+    "maxSize": "Max {{maxMb}} Mo",
+    "chooseFile": "Choisir un fichier vidéo",
+    "submit": "Réduire la vidéo",
+    "loading": "Compression...",
+    "errorFileTooBig": "La vidéo doit faire {{maxMb}} Mo ou moins.",
+    "errorInvalid": "Choisissez un fichier vidéo valide.",
+    "errorNetwork": "Une erreur s'est produite. Réessayez.",
+    "success": "Terminé ! Le fichier se téléchargera automatiquement.",
+    "backToTools": "Retour aux outils",
+    "metaTitle": "Réducteur de vidéo | CosmoVid",
+    "metaDescription": "Compressez et réduisez des vidéos en ligne. Jusqu'à 100 Mo. Compresseur vidéo gratuit."
+  },
+  "common": {
+    "backToHome": "Retour à l'accueil",
+    "language": "Langue",
+    "adLabel": "Publicité",
+    "skipToContent": "Aller au contenu",
+    "darkMode": "Mode sombre",
+    "lightMode": "Mode clair",
+    "copyLink": "Copier le lien",
+    "copied": "Copié !",
+    "retry": "Réessayer avec le même lien"
+  }
+}

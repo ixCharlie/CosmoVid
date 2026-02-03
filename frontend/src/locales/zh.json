@@ -1,0 +1,78 @@
+{
+  "nav": { "home": "首页", "tools": "工具", "faq": "常见问题", "about": "关于" },
+  "home": {
+    "title": "CosmoVid",
+    "subtitle": "高清下载 TikTok 视频 — 带水印或无水印。免费、快速。",
+    "placeholder": "在此粘贴 TikTok 视频链接...",
+    "urlValid": "有效的 TikTok 链接",
+    "urlInvalid": "无效的 TikTok 链接",
+    "submit": "获取下载链接",
+    "loading": "正在获取视频...",
+    "errorInvalid": "请输入有效的 TikTok 链接。",
+    "downloadVideo": "下载视频",
+    "downloadMp3": "MP3 音频",
+    "tryAnother": "下载其他视频",
+    "howToUse": "使用方法",
+    "step1": "打开 TikTok 并复制视频链接（分享 → 复制链接）。",
+    "step2": "将链接粘贴到上方输入框。",
+    "step3": "点击「获取下载链接」并稍等片刻。",
+    "step4": "选择 MP4（带/无水印）或 MP3 并下载。",
+    "metaTitle": "CosmoVid - TikTok 高清下载 | 无水印 | 免费",
+    "metaDescription": "高清下载 TikTok 视频，带水印或无水印。免费 TikTok 下载器。MP4 与 MP3。无需注册。"
+  },
+  "faq": {
+    "title": "常见问题",
+    "howItWorks": "如何运作",
+    "howItWorksAnswer": "在首页输入框粘贴 TikTok 视频链接并点击「获取下载链接」。我们会获取视频并显示 MP4 与 MP3 的直接下载链接。",
+    "legal": "法律声明",
+    "legalAnswer": "本工具仅供个人使用。请尊重版权与 TikTok 服务条款。我们与 TikTok 无隶属关系。",
+    "metaTitle": "常见问题 | CosmoVid",
+    "metaDescription": "如何使用 TikTok 下载器。法律声明与常见问题。"
+  },
+  "about": {
+    "title": "关于",
+    "intro": "我们提供简单、快速的方式下载 TikTok 高清视频 — 带水印或无水印 — 以及 MP3。",
+    "contact": "联系我们",
+    "contactText": "如需支持或反馈，请使用表单或邮件联系我们。",
+    "metaTitle": "关于与联系 | CosmoVid",
+    "metaDescription": "关于我们的 TikTok 下载器及如何联系我们。"
+  },
+  "tools": {
+    "title": "视频工具",
+    "intro": "免费在线视频下载与处理工具。更多工具即将推出。",
+    "toolTikTokTitle": "TikTok 下载器",
+    "toolTikTokDesc": "高清下载 TikTok 视频为 MP4 或 MP3。粘贴链接即可直接下载。",
+    "toolShrinkTitle": "视频压缩",
+    "toolShrinkDesc": "压缩视频以减小体积。最大 100MB。输出：MP4、720p。",
+    "useTool": "使用工具",
+    "moreComing": "更多视频工具即将推出。",
+    "metaTitle": "视频工具 | CosmoVid",
+    "metaDescription": "免费视频工具：TikTok 下载器等。高清下载、转 MP3 等。"
+  },
+  "shrink": {
+    "title": "视频压缩",
+    "intro": "上传视频以压缩并减小体积。输出为 MP4（最高 720p）。",
+    "maxSize": "最大 {{maxMb}}MB",
+    "chooseFile": "选择视频文件",
+    "submit": "压缩视频",
+    "loading": "压缩中...",
+    "errorFileTooBig": "视频须为 {{maxMb}}MB 或更小。",
+    "errorInvalid": "请选择有效的视频文件。",
+    "errorNetwork": "出错了，请重试。",
+    "success": "完成！文件将自动下载。",
+    "backToTools": "返回工具",
+    "metaTitle": "视频压缩 | CosmoVid",
+    "metaDescription": "在线压缩视频、减小体积。最大 100MB。免费视频压缩工具。"
+  },
+  "common": {
+    "backToHome": "返回首页",
+    "language": "语言",
+    "adLabel": "广告",
+    "skipToContent": "跳到主内容",
+    "darkMode": "深色模式",
+    "lightMode": "浅色模式",
+    "copyLink": "复制链接",
+    "copied": "已复制！",
+    "retry": "使用同一链接重试"
+  }
+}

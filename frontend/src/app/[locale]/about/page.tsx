@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import { AboutContent } from '@/components/AboutContent';
-import { getPageMeta, getAlternatesForPageWithLocale, getOgLocale } from '@/lib/seo';
+import { getPageMeta, getAlternatesForPageWithLocale, getOgLocale, getOgAlternateLocales } from '@/lib/seo';
 import type { Locale } from '@/lib/i18n';
+import { isLocale } from '@/lib/i18n';
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const validLocale: Locale = locale === 'ar' ? 'ar' : 'en';
+  const validLocale: Locale = isLocale(locale) ? locale : 'en';
   const meta = getPageMeta(validLocale, 'about');
   const alternates = getAlternatesForPageWithLocale(validLocale, 'about');
   return {
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: meta.title,
       description: meta.description,
       locale: getOgLocale(validLocale),
-      alternateLocale: validLocale === 'en' ? ['ar_AR'] : ['en_US'],
+      alternateLocale: getOgAlternateLocales(validLocale),
     },
   };
 }
