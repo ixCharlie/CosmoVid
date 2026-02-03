@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '@/contexts/LocaleContext';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -29,9 +30,19 @@ export function Header({ defaultLocale: _ }: HeaderProps = {}) {
         <div className="flex items-center justify-between min-h-14 sm:h-16 md:h-20 gap-2">
           <Link
             href={`/${locale}`}
-            className="font-display text-xl md:text-2xl text-charcoal dark:text-cream tracking-tight hover:text-gold dark:hover:text-gold theme-fade shrink-0 py-2 touch-manipulation"
+            className="flex items-center gap-2 font-display text-xl md:text-2xl text-charcoal dark:text-cream tracking-tight hover:text-gold dark:hover:text-gold theme-fade shrink-0 py-2 touch-manipulation"
+            aria-label="CosmoVid Home"
           >
-            CosmoVid
+            <Image
+              src="/Cosmo.png"
+              alt=""
+              width={40}
+              height={40}
+              className="h-8 w-8 md:h-10 md:w-10 object-contain"
+              priority
+              unoptimized
+            />
+            <span>CosmoVid</span>
           </Link>
           <nav className="flex items-center flex-wrap justify-end gap-1 sm:gap-2 md:gap-6" aria-label="Main">
             {nav.map(({ href, label }) => (
