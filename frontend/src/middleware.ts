@@ -41,5 +41,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|api).*)'],
+  // Exclude static assets so /Cosmo.png etc. are served without locale redirect
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|api|Cosmo\\.png).*)'],
 };
