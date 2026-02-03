@@ -10,7 +10,7 @@ import zh from '@/locales/zh.json';
 import hi from '@/locales/hi.json';
 import ru from '@/locales/ru.json';
 
-export type PageKey = 'home' | 'faq' | 'about' | 'tools' | 'shrink';
+export type PageKey = 'home' | 'faq' | 'about' | 'shrink';
 
 type MetaMessages = Record<
   Locale,
@@ -18,7 +18,6 @@ type MetaMessages = Record<
     home: { metaTitle: string; metaDescription: string };
     faq: { metaTitle: string; metaDescription: string };
     about: { metaTitle: string; metaDescription: string };
-    tools: { metaTitle: string; metaDescription: string };
     shrink: { metaTitle: string; metaDescription: string };
   }
 >;

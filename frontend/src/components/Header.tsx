@@ -19,7 +19,6 @@ export function Header({ defaultLocale: _ }: HeaderProps = {}) {
 
   const nav = [
     { href: `/${locale}`, label: t('nav.home') },
-    { href: `/${locale}/tools`, label: t('nav.tools') },
     { href: `/${locale}/faq`, label: t('nav.faq') },
     { href: `/${locale}/about`, label: t('nav.about') },
   ];

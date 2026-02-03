@@ -17,6 +17,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://cosmovid.example.com'),
+  viewport: { width: 'device-width', initialScale: 1, maximumScale: 5 },
   title: {
     default: 'CosmoVid - TikTok Downloader HD | No Watermark',
     template: '%s | CosmoVid',

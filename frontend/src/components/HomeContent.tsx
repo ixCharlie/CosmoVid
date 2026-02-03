@@ -30,12 +30,12 @@ export function HomeContent() {
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 theme-fade">
-      <section className="animate-fade-in text-center mb-10 md:mb-14">
-        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl text-charcoal dark:text-cream tracking-tight mb-3">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 theme-fade min-h-0">
+      <section className="animate-fade-in text-center mb-8 sm:mb-10 md:mb-14">
+        <h1 className="font-display text-2xl sm:text-4xl md:text-5xl text-charcoal dark:text-cream tracking-tight mb-2 sm:mb-3 px-1">
           {t('home.title')}
         </h1>
-        <p className="text-stone dark:text-stone/80 text-lg md:text-xl max-w-xl mx-auto">
+        <p className="text-stone dark:text-stone/80 text-base sm:text-lg md:text-xl max-w-xl mx-auto leading-snug">
           {t('home.subtitle')}
         </p>
       </section>
@@ -45,7 +45,7 @@ export function HomeContent() {
         onRetryUrlConsumed={() => setRetryUrl(null)}
       />
       {result && (
-        <div className="mt-8 animate-slide-up">
+        <div className="mt-6 sm:mt-8 animate-slide-up">
           <DownloadResults
             result={result}
             onReset={() => setResult(null)}
@@ -54,22 +54,22 @@ export function HomeContent() {
         </div>
       )}
 
-      <section className="mt-12 md:mt-16 pt-10 border-t border-stone/20 dark:border-stone/30" aria-labelledby="how-to-use-heading">
-        <h2 id="how-to-use-heading" className="font-display text-xl md:text-2xl text-charcoal dark:text-cream mb-6 text-center">
+      <section className="mt-10 sm:mt-12 md:mt-16 pt-8 sm:pt-10 border-t border-stone/20 dark:border-stone/30" aria-labelledby="how-to-use-heading">
+        <h2 id="how-to-use-heading" className="font-display text-lg sm:text-xl md:text-2xl text-charcoal dark:text-cream mb-4 sm:mb-6 text-center">
           {t('home.howToUse')}
         </h2>
-        <ol className="space-y-4 max-w-lg mx-auto">
+        <ol className="space-y-3 sm:space-y-4 max-w-lg mx-auto text-left">
           {[
             { key: 'step1', label: t('home.step1') },
             { key: 'step2', label: t('home.step2') },
             { key: 'step3', label: t('home.step3') },
             { key: 'step4', label: t('home.step4') },
           ].map(({ key, label }, i) => (
-            <li key={key} className="flex gap-4 items-start">
+            <li key={key} className="flex gap-3 sm:gap-4 items-start">
               <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold/20 dark:bg-gold/30 text-gold font-display font-medium flex items-center justify-center text-sm">
                 {i + 1}
               </span>
-              <span className="text-stone dark:text-stone/80 pt-0.5">{label}</span>
+              <span className="text-stone dark:text-stone/80 pt-0.5 text-sm sm:text-base">{label}</span>
             </li>
           ))}
         </ol>

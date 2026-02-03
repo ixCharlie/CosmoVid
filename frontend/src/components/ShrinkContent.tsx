@@ -140,10 +140,10 @@ export function ShrinkContent() {
       </form>
       <p className="mt-8">
         <Link
-          href={`/${locale}/tools`}
+          href={`/${locale}`}
           className="text-gold hover:underline"
         >
-          {t('shrink.backToTools')}
+          {t('nav.home')}
         </Link>
       </p>
     </article>

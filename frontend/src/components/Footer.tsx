@@ -22,9 +22,6 @@ export function Footer({ defaultLocale: _ }: FooterProps = {}) {
             <Link href={`/${locale}`} className="hover:text-gold transition-colors">
               {t('nav.home')}
             </Link>
-            <Link href={`/${locale}/tools`} className="hover:text-gold transition-colors">
-              {t('nav.tools')}
-            </Link>
             <Link href={`/${locale}/faq`} className="hover:text-gold transition-colors">
               {t('nav.faq')}
             </Link>
