@@ -16,6 +16,8 @@
     "errorInvalid": "请输入有效的 TikTok 链接。",
     "downloadVideo": "下载视频",
     "tryAnother": "下载其他视频",
+    "duration": "时长",
+    "quality": "画质",
     "howToUse": "使用方法",
     "step1": "打开 TikTok 并复制视频链接（分享 → 复制链接）。",
     "step2": "将链接粘贴到上方输入框。",

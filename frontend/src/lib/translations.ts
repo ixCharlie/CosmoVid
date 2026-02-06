@@ -32,8 +32,11 @@ function getNested(obj: Record<string, unknown>, path: string): unknown {
 
 export function getTranslations(locale: Locale) {
   const t = messages[locale] ?? messages.en;
+  const en = messages.en as Record<string, unknown>;
   return function tr(key: string): string {
     const value = getNested(t as Record<string, unknown>, key);
-    return typeof value === 'string' ? value : key;
+    if (typeof value === 'string') return value;
+    const fallback = getNested(en, key);
+    return typeof fallback === 'string' ? fallback : key;
   };
 }

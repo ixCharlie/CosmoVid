@@ -8,39 +8,27 @@ import { AdSlot } from './AdSlot';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
-/** Sanitize video title for use as download filename; fallback to generic name. */
-function sanitizeFilenameForUrl(title: string | undefined, ext: 'mp4' | 'mp3'): string {
-  if (!title || typeof title !== 'string') return ext === 'mp3' ? 'tiktok-audio.mp3' : 'tiktok-video.mp4';
+function sanitizeFilenameForUrl(title: string | undefined): string {
+  if (!title || typeof title !== 'string') return 'x-video.mp4';
   const safe = title
     .replace(/[/\\:*?"<>|]/g, '')
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, 100);
-  if (!safe) return ext === 'mp3' ? 'tiktok-audio.mp3' : 'tiktok-video.mp4';
-  return `${safe}.${ext}`;
+  if (!safe) return 'x-video.mp4';
+  return `${safe}.mp4`;
 }
 
-/** Use TikTok page URL so backend streams via yt-dlp. Fallback: direct media URL if no page URL. */
-function proxyDownloadUrl(
-  tiktokPageUrl: string | undefined,
-  variant: 'no_watermark' | 'watermark',
-  directMediaUrl?: string,
-  filename?: string
-): string {
-  const base = (params: string) =>
-    `${API_URL}/api/download/proxy?${params}${filename ? `&filename=${encodeURIComponent(filename)}` : ''}`;
-  if (tiktokPageUrl && typeof btoa !== 'undefined') {
-    const encoded = btoa(encodeURIComponent(tiktokPageUrl));
-    return base(`tiktok_url=${encodeURIComponent(encoded)}&variant=${variant}&type=mp4`);
-  }
-  if (directMediaUrl && typeof btoa !== 'undefined') {
-    const encoded = btoa(encodeURIComponent(directMediaUrl));
-    return base(`media=${encodeURIComponent(encoded)}&type=mp4`);
+function proxyDownloadUrl(xPageUrl: string | undefined, filename?: string): string {
+  if (xPageUrl && typeof btoa !== 'undefined') {
+    const encoded = btoa(encodeURIComponent(xPageUrl));
+    const base = `${API_URL}/api/x/proxy?x_url=${encodeURIComponent(encoded)}&type=mp4`;
+    return filename ? `${base}&filename=${encodeURIComponent(filename)}` : base;
   }
   return '#';
 }
 
-interface Result {
+interface XResult {
   success: boolean;
   title?: string;
   author?: string;
@@ -48,21 +36,17 @@ interface Result {
   duration?: number;
   quality?: string;
   _submittedUrl?: string;
-  links: {
-    mp4HdWatermark?: string;
-    mp4HdNoWatermark?: string;
-    mp3?: string;
-  };
+  links: { video?: string };
   error?: string;
 }
 
-interface DownloadResultsProps {
-  result: Result;
+interface XDownloadResultsProps {
+  result: XResult;
   onReset: () => void;
   onRetry?: (url: string) => void;
 }
 
-export function DownloadResults({ result, onReset, onRetry }: DownloadResultsProps) {
+export function XDownloadResults({ result, onReset, onRetry }: XDownloadResultsProps) {
   const { locale } = useLocale();
   const t = getTranslations(locale);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -72,9 +56,7 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
       await navigator.clipboard.writeText(href);
       setCopiedId(id);
       setTimeout(() => setCopiedId(null), 2000);
-    } catch {
-      // fallback: open in new tab or ignore
-    }
+    } catch {}
   }, []);
 
   if (!result.success) {
@@ -96,7 +78,7 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
             onClick={onReset}
             className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-sm text-gold hover:underline touch-manipulation px-2"
           >
-            {t('home.tryAnother')}
+            {t('x.tryAnother')}
           </button>
         </div>
       </div>
@@ -104,65 +86,24 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
   }
 
   const { title, author, cover, duration, quality, links } = result;
-  const videoUrl = links.mp4HdNoWatermark || links.mp4HdWatermark;
-  const videoVariant = links.mp4HdNoWatermark ? 'no_watermark' : 'watermark';
-  const hasAnyLink = !!videoUrl;
+  const videoUrl = links.video;
+  const downloadFilenameVideo = sanitizeFilenameForUrl(title);
+  const href = proxyDownloadUrl(result._submittedUrl, downloadFilenameVideo);
 
-  /** Format duration in seconds as M:SS */
   function formatDuration(sec: number): string {
     const m = Math.floor(sec / 60);
     const s = Math.floor(sec % 60);
     return `${m}:${s.toString().padStart(2, '0')}`;
   }
 
-  /** Filename for download (used in Content-Disposition via proxy and as fallback for download attribute). */
-  const downloadFilenameVideo = sanitizeFilenameForUrl(title, 'mp4');
-
-  function DownloadButton({
-    href,
-    label,
-    id,
-    primary,
-    downloadName,
-  }: { href: string; label: string; id: string; primary?: boolean; downloadName: string }) {
-    const isCopied = copiedId === id;
-    return (
-      <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
-        <a
-          href={href}
-          download={downloadName}
-          className={
-            primary
-              ? 'inline-flex items-center justify-center min-h-[44px] px-4 py-3 rounded-lg bg-charcoal dark:bg-cream text-cream dark:text-charcoal font-medium hover:opacity-90 transition-opacity flex-1 min-w-0 touch-manipulation text-sm sm:text-base'
-              : 'inline-flex items-center justify-center min-h-[44px] px-4 py-3 rounded-lg border border-charcoal dark:border-stone/40 text-charcoal dark:text-cream font-medium hover:bg-stone/5 dark:hover:bg-stone/20 transition-colors flex-1 min-w-0 touch-manipulation text-sm sm:text-base'
-          }
-        >
-          {label}
-        </a>
-        <button
-          type="button"
-          onClick={(e) => { e.preventDefault(); copyLink(href, id); }}
-          className="shrink-0 min-h-[44px] min-w-[44px] p-2 rounded-lg border border-stone/30 dark:border-stone/50 text-stone dark:text-stone/80 hover:bg-stone/10 dark:hover:bg-stone/20 transition-colors touch-manipulation flex items-center justify-center"
-          title={t('common.copyLink')}
-          aria-label={isCopied ? t('common.copied') : t('common.copyLink')}
-        >
-          {isCopied ? (
-            <span className="text-green-600 dark:text-green-400 text-sm font-medium">{t('common.copied')}</span>
-          ) : (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-          )}
-        </button>
-      </div>
-    );
-  }
+  const isCopied = copiedId === 'mp4-video';
 
   return (
     <div className="rounded-2xl border border-stone/20 dark:border-stone/40 bg-white dark:bg-stone/10 shadow-lg overflow-hidden">
       <div className="p-4 sm:p-6">
         <div className="flex flex-col sm:flex-row gap-5 sm:gap-6">
-          {/* Video preview with duration overlay */}
           {cover && (
-            <div className="relative w-full sm:w-56 flex-shrink-0 rounded-xl overflow-hidden bg-stone/10 aspect-[9/16] max-h-[320px] sm:max-h-[380px] shadow-inner ring-1 ring-stone/10 dark:ring-stone/30">
+            <div className="relative w-full sm:w-56 flex-shrink-0 rounded-xl overflow-hidden bg-stone/10 aspect-video max-h-[320px] sm:max-h-[380px] shadow-inner ring-1 ring-stone/10 dark:ring-stone/30">
               <Image
                 src={cover}
                 alt=""
@@ -182,7 +123,6 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
             </div>
           )}
           <div className="flex-1 min-w-0 flex flex-col">
-            {/* Username + meta row */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
               {author && (
                 <span className="font-medium text-charcoal dark:text-cream">
@@ -207,24 +147,39 @@ export function DownloadResults({ result, onReset, onRetry }: DownloadResultsPro
             )}
             <div className="flex flex-col gap-3 mt-auto">
               {videoUrl && (
-                <DownloadButton
-                  href={proxyDownloadUrl(result._submittedUrl, videoVariant, videoUrl, downloadFilenameVideo)}
-                  label={t('home.downloadVideo')}
-                  id="mp4-video"
-                  primary
-                  downloadName={downloadFilenameVideo}
-                />
+                <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                  <a
+                    href={href}
+                    download={downloadFilenameVideo}
+                    className="inline-flex items-center justify-center min-h-[44px] px-4 py-3 rounded-lg bg-charcoal dark:bg-cream text-cream dark:text-charcoal font-medium hover:opacity-90 transition-opacity flex-1 min-w-0 touch-manipulation text-sm sm:text-base"
+                  >
+                    {t('x.downloadVideo')}
+                  </a>
+                  <button
+                    type="button"
+                    onClick={(e) => { e.preventDefault(); copyLink(href, 'mp4-video'); }}
+                    className="shrink-0 min-h-[44px] min-w-[44px] p-2 rounded-lg border border-stone/30 dark:border-stone/50 text-stone dark:text-stone/80 hover:bg-stone/10 dark:hover:bg-stone/20 transition-colors touch-manipulation flex items-center justify-center"
+                    title={t('common.copyLink')}
+                    aria-label={isCopied ? t('common.copied') : t('common.copyLink')}
+                  >
+                    {isCopied ? (
+                      <span className="text-green-600 dark:text-green-400 text-sm font-medium">{t('common.copied')}</span>
+                    ) : (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    )}
+                  </button>
+                </div>
               )}
             </div>
-            {!hasAnyLink && (
-              <p className="text-sm text-stone dark:text-stone/80 mt-2">No download links available for this video.</p>
+            {!videoUrl && (
+              <p className="text-sm text-stone dark:text-stone/80 mt-2">No download link available for this video.</p>
             )}
             <button
               type="button"
               onClick={onReset}
               className="mt-4 min-h-[44px] inline-flex items-center justify-center text-sm text-gold hover:underline touch-manipulation -ml-2 pl-2 self-start"
             >
-              {t('home.tryAnother')}
+              {t('x.tryAnother')}
             </button>
           </div>
         </div>

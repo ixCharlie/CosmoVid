@@ -14,6 +14,8 @@ export interface DownloadResult {
   title?: string;
   author?: string;
   cover?: string;
+  duration?: number; // seconds
+  quality?: string; // e.g. "720p", "1080p"
   links: {
     mp4HdWatermark?: string;
     mp4HdNoWatermark?: string;
@@ -44,6 +46,7 @@ interface YtDlpJson {
   uploader?: string;
   thumbnail?: string;
   url?: string;
+  duration?: number;
   formats?: YtDlpFormat[];
 }
 
@@ -81,38 +84,8 @@ function runYtDlp(url: string): Promise<YtDlpJson> {
 }
 
 /**
- * Fallback when yt-dlp fails (e.g. TikTok IP block). Uses a public API.
- */
-async function fetchViaTikMate(url: string): Promise<DownloadResult | null> {
-  try {
-    const res = await fetch('https://api.tikmate.app/api/lookup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url }),
-    });
-    const data = (await res.json()) as Record<string, unknown>;
-    const videoUrl = (data?.video_url as string) ?? (data?.url as string);
-    if (!videoUrl) return null;
-    const authorObj = data?.author as Record<string, string> | undefined;
-    return {
-      success: true,
-      title: (data?.title as string) || undefined,
-      author: authorObj?.username ?? authorObj?.nickname ?? (data?.author as string),
-      cover: (data?.cover as string) || undefined,
-      links: {
-        mp4HdWatermark: videoUrl,
-        mp4HdNoWatermark: (data?.video_url_no_watermark as string) ?? videoUrl,
-        mp3: (data?.audio_url as string) ?? undefined,
-      },
-    };
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Fetches TikTok video metadata and download links using yt-dlp.
- * Requires yt-dlp installed on the system (pip install yt-dlp or see https://github.com/yt-dlp/yt-dlp).
+ * Fetches TikTok video metadata and download links using yt-dlp only.
+ * Requires yt-dlp installed and up to date (pip install yt-dlp / yt-dlp -U).
  */
 export async function getTikTokDownloadLinks(url: string): Promise<DownloadResult> {
   const trimmed = url.trim();
@@ -131,41 +104,39 @@ export async function getTikTokDownloadLinks(url: string): Promise<DownloadResul
   if (cached) return cached;
 
   try {
-    let result: DownloadResult | null = null;
+    const data = await runYtDlp(trimmed);
+    const formats = Array.isArray(data?.formats) ? data.formats : [];
+    const videoFormats = formats.filter((f) => f.url && isVideoFormat(f));
+    const audioFormats = formats.filter((f) => f.url && isAudioOnlyFormat(f));
 
-    try {
-      const data = await runYtDlp(trimmed);
-      const formats = Array.isArray(data?.formats) ? data.formats : [];
-      const videoFormats = formats.filter((f) => f.url && isVideoFormat(f));
-      const audioFormats = formats.filter((f) => f.url && isAudioOnlyFormat(f));
+    const withWatermark = videoFormats.find((f) => !isNoWatermark(f)) ?? videoFormats[0];
+    const noWatermark = videoFormats.find(isNoWatermark) ?? videoFormats.find((f) => !isNoWatermark(f)) ?? videoFormats[0];
+    const audio = audioFormats[0];
 
-      const withWatermark = videoFormats.find((f) => !isNoWatermark(f)) ?? videoFormats[0];
-      const noWatermark = videoFormats.find(isNoWatermark) ?? videoFormats.find((f) => !isNoWatermark(f)) ?? videoFormats[0];
-      const audio = audioFormats[0];
+    const videoUrlWatermark = withWatermark?.url;
+    const videoUrlNoWatermark = noWatermark?.url ?? videoUrlWatermark;
+    const audioUrl = audio?.url;
 
-      const videoUrlWatermark = withWatermark?.url;
-      const videoUrlNoWatermark = noWatermark?.url ?? videoUrlWatermark;
-      const audioUrl = audio?.url;
-
-      if (videoUrlWatermark || videoUrlNoWatermark) {
-        result = {
-          success: true,
-          title: data.title ?? undefined,
-          author: data.uploader ?? undefined,
-          cover: data.thumbnail ?? undefined,
-          links: {
-            mp4HdWatermark: videoUrlWatermark,
-            mp4HdNoWatermark: videoUrlNoWatermark,
-            mp3: audioUrl,
-          },
-        };
-      }
-    } catch {
-      // yt-dlp failed (e.g. TikTok IP block / impersonation required); try fallback
-      result = await fetchViaTikMate(trimmed);
-    }
-
-    if (result) {
+    if (videoUrlWatermark || videoUrlNoWatermark) {
+      const chosenFormat = noWatermark ?? withWatermark;
+      const quality = chosenFormat?.height
+        ? `${chosenFormat.height}p`
+        : (chosenFormat?.format_note && !/watermark/i.test(chosenFormat.format_note))
+          ? chosenFormat.format_note
+          : undefined;
+      const result: DownloadResult = {
+        success: true,
+        title: data.title ?? undefined,
+        author: data.uploader ?? undefined,
+        cover: data.thumbnail ?? undefined,
+        duration: typeof data.duration === 'number' ? data.duration : undefined,
+        quality: quality ?? undefined,
+        links: {
+          mp4HdWatermark: videoUrlWatermark,
+          mp4HdNoWatermark: videoUrlNoWatermark,
+          mp3: audioUrl,
+        },
+      };
       cache.set(cacheKey, result);
       return result;
     }
@@ -180,12 +151,16 @@ export async function getTikTokDownloadLinks(url: string): Promise<DownloadResul
     const isPrivate =
       /private|unavailable|sign in|login|restricted|blocked|404|not found/i.test(message) ||
       message.includes('Private');
+    const isExtract =
+      /unable to extract|extract webpage/i.test(message);
     return {
       success: false,
       links: {},
       error: isPrivate
         ? 'Video not found or is private. Please check the URL.'
-        : 'Unable to fetch video. Please try again or use a different TikTok URL.',
+        : isExtract
+          ? 'yt-dlp could not extract this video. Update yt-dlp (yt-dlp -U) and try again.'
+          : 'Unable to fetch video. Please try again or use a different TikTok URL.',
     };
   }
 }

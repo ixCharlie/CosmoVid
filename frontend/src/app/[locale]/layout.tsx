@@ -24,7 +24,7 @@ export default async function LocaleLayout({
     <LocaleProvider initialLocale={validLocale}>
       <SkipLink />
       <Header />
-      <main id="main-content" className="flex-1 theme-fade">{children}</main>
+      <main id="main-content" className="flex-1 theme-fade pt-6 sm:pt-8">{children}</main>
       <Footer />
     </LocaleProvider>
   );

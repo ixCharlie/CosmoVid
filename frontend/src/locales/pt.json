@@ -16,6 +16,8 @@
     "errorInvalid": "Digite um link válido do TikTok.",
     "downloadVideo": "Baixar vídeo",
     "tryAnother": "Baixar outro vídeo",
+    "duration": "Duração",
+    "quality": "Qualidade",
     "howToUse": "Como usar",
     "step1": "Abra o TikTok e copie o link do vídeo (compartilhar → Copiar link).",
     "step2": "Cole o link na caixa acima.",

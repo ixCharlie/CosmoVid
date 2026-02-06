@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
-import { AboutContent } from '@/components/AboutContent';
 import { getPageMeta, getAlternatesForPageWithLocale, getOgLocale, getOgAlternateLocales } from '@/lib/seo';
 import type { Locale } from '@/lib/i18n';
 import { isLocale } from '@/lib/i18n';
+import { XPageClient } from '@/components/XPageClient';
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const validLocale: Locale = isLocale(locale) ? locale : 'en';
-  const meta = getPageMeta(validLocale, 'about');
-  const alternates = getAlternatesForPageWithLocale(validLocale, 'about');
+  const meta = getPageMeta(validLocale, 'x');
+  const alternates = getAlternatesForPageWithLocale(validLocale, 'x');
   return {
     title: meta.title,
     description: meta.description,
@@ -27,10 +27,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function AboutPage() {
-  return (
-    <div className="page-content page-section w-full max-w-3xl mx-auto">
-      <AboutContent />
-    </div>
-  );
+export default function XPage() {
+  return <XPageClient />;
 }

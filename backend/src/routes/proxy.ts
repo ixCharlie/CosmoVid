@@ -47,6 +47,32 @@ function decodeMediaParam(encoded: string): string | null {
   }
 }
 
+/** Sanitize user-provided filename for Content-Disposition: ASCII-only, no control chars, safe for HTTP headers. */
+function sanitizeFilename(raw: string | undefined, type: 'mp4' | 'mp3'): string {
+  const ext = type === 'mp3' ? '.mp3' : '.mp4';
+  const defaultBase = type === 'mp3' ? 'tiktok-audio' : 'tiktok-video';
+  if (!raw || typeof raw !== 'string') return `${defaultBase}${ext}`;
+  const decoded = tryDecodeUri(raw);
+  const safe = decoded
+    .replace(/[\x00-\x1F\x7F\\]/g, '')
+    .replace(/[/:*?"<>|]/g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/[^\x20-\x7E]/g, '') // HTTP headers: printable ASCII only (Node rejects non-ASCII)
+    .trim()
+    .slice(0, 150);
+  if (!safe) return `${defaultBase}${ext}`;
+  const base = safe.endsWith(ext) ? safe.slice(0, -ext.length) : safe.replace(/\.[^.]+$/, '');
+  return `${(base && base.trim()) || defaultBase}${ext}`;
+}
+
+function tryDecodeUri(s: string): string {
+  try {
+    return decodeURIComponent(s);
+  } catch {
+    return s;
+  }
+}
+
 export const proxyRouter = Router();
 
 proxyRouter.use(limiter);
@@ -156,10 +182,11 @@ async function streamUrlToResponse(
 proxyRouter.get('/proxy', async (req: Request, res: Response) => {
   const media = typeof req.query.media === 'string' ? req.query.media.trim() : '';
   const tiktokUrlEnc = typeof req.query.tiktok_url === 'string' ? req.query.tiktok_url.trim() : '';
-  const type = (req.query.type as string) || 'mp4';
+  const type = ((req.query.type as string) || 'mp4') === 'mp3' ? 'mp3' : 'mp4';
   const variant = ((req.query.variant as string) || 'no_watermark') as 'no_watermark' | 'watermark' | 'mp3';
+  const filenameParam = typeof req.query.filename === 'string' ? req.query.filename.trim() : '';
 
-  const filename = type === 'mp3' ? 'tiktok-audio.mp3' : 'tiktok-video.mp4';
+  const filename = sanitizeFilename(filenameParam || undefined, type);
   const contentType = type === 'mp3' ? 'audio/mpeg' : 'video/mp4';
 
   if (tiktokUrlEnc) {
@@ -207,4 +234,85 @@ proxyRouter.get('/proxy', async (req: Request, res: Response) => {
   }
 
   return res.status(400).json({ error: 'Missing media or tiktok_url.' });
+});
+
+/** Stream any video URL with yt-dlp (best format). Used for X/Twitter. */
+function streamWithYtDlpBest(
+  pageUrl: string,
+  res: Response,
+  filename: string,
+  contentType: string
+): Promise<boolean> {
+  return new Promise((resolve) => {
+    const args = [
+      '--no-warnings',
+      '--no-playlist',
+      '--no-check-certificate',
+      '-f', 'best',
+      '-o', '-',
+      pageUrl,
+    ];
+    const proc = spawn(YT_DLP, args, { stdio: ['ignore', 'pipe', 'pipe'] });
+    let stderr = '';
+    let resolved = false;
+    const done = (ok: boolean) => {
+      if (resolved) return;
+      resolved = true;
+      resolve(ok);
+    };
+    proc.stderr?.on('data', (chunk: Buffer) => { stderr += chunk.toString(); });
+    proc.on('error', (err) => { console.error('yt-dlp spawn error:', err); done(false); });
+    proc.on('close', (code) => {
+      if (code !== 0 && stderr) console.error('yt-dlp exit', code, 'stderr:', stderr.slice(0, 500));
+      if (!res.headersSent) done(false);
+    });
+    const stdout = proc.stdout;
+    if (!stdout) { done(false); return; }
+    stdout.on('error', () => done(false));
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.setHeader('Content-Type', contentType);
+    stdout.pipe(res);
+    done(true);
+  });
+}
+
+function isXUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return host === 'x.com' || host === 'twitter.com' || host.endsWith('.x.com') || host.endsWith('.twitter.com');
+  } catch {
+    return false;
+  }
+}
+
+export const xProxyRouter = Router();
+xProxyRouter.use(limiter);
+xProxyRouter.get('/proxy', async (req: Request, res: Response) => {
+  const xUrlEnc = typeof req.query.x_url === 'string' ? req.query.x_url.trim() : '';
+  const filenameParam = typeof req.query.filename === 'string' ? req.query.filename.trim() : '';
+  const filename = sanitizeFilename(filenameParam || undefined, 'mp4');
+  const contentType = 'video/mp4';
+
+  if (!xUrlEnc) {
+    return res.status(400).json({ error: 'Missing x_url.' });
+  }
+
+  const pageUrl = decodeMediaParam(xUrlEnc);
+  if (!pageUrl || !isXUrl(pageUrl)) {
+    return res.status(400).json({ error: 'Invalid X/Twitter URL.' });
+  }
+
+  try {
+    const ok = await streamWithYtDlpBest(pageUrl, res, filename, contentType);
+    if (!ok && !res.headersSent) {
+      return res.status(502).json({
+        error: 'Download failed. Make sure yt-dlp is installed and the URL is valid.',
+      });
+    }
+  } catch (err) {
+    console.error('X proxy yt-dlp error:', err);
+    if (!res.headersSent) {
+      return res.status(502).json({ error: 'Download failed. Please try again.' });
+    }
+  }
 });

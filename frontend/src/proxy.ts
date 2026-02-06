@@ -5,7 +5,7 @@ import { COOKIE_NAME } from '@/lib/locale-preference';
 
 const LOCALE_HEADER = 'x-locale';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const segment = pathname.split('/')[1];
 
