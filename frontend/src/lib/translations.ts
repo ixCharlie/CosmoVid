@@ -9,7 +9,7 @@ import zh from '@/locales/zh.json';
 import hi from '@/locales/hi.json';
 import ru from '@/locales/ru.json';
 
-const messages: Record<Locale, typeof en> = {
+const messages = {
   en,
   ar,
   es,
@@ -19,7 +19,7 @@ const messages: Record<Locale, typeof en> = {
   zh,
   hi,
   ru,
-};
+} as unknown as Record<Locale, typeof en>;
 
 function getNested(obj: Record<string, unknown>, path: string): unknown {
   const parts = path.split('.');
