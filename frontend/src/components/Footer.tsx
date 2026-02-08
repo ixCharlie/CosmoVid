@@ -26,23 +26,6 @@ export function Footer({ defaultLocale: _ }: FooterProps = {}) {
               <Link href={`/${locale}/tools`} className="hover:text-gold transition-colors min-h-[44px] inline-flex items-center py-2 text-sm sm:text-base touch-manipulation">
                 {t('nav.tools')}
               </Link>
-              <Link href={`/${locale}/blog`} className="hover:text-gold transition-colors min-h-[44px] inline-flex items-center py-2 text-sm sm:text-base touch-manipulation">
-                {t('nav.blog')}
-              </Link>
-              <Link href={`/${locale}/faq`} className="hover:text-gold transition-colors min-h-[44px] inline-flex items-center py-2 text-sm sm:text-base touch-manipulation">
-                {t('nav.faq')}
-              </Link>
-              <Link href={`/${locale}/about`} className="hover:text-gold transition-colors min-h-[44px] inline-flex items-center py-2 text-sm sm:text-base touch-manipulation">
-                {t('nav.about')}
-              </Link>
-            </nav>
-            <nav className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2" aria-label="Legal">
-              <Link href={`/${locale}/privacy`} className="hover:text-gold transition-colors min-h-[44px] inline-flex items-center py-2 text-sm text-cream/80 touch-manipulation">
-                {t('nav.privacy')}
-              </Link>
-              <Link href={`/${locale}/terms`} className="hover:text-gold transition-colors min-h-[44px] inline-flex items-center py-2 text-sm text-cream/80 touch-manipulation">
-                {t('nav.terms')}
-              </Link>
             </nav>
           </div>
         </div>

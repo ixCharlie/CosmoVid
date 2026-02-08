@@ -19,6 +19,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: 'cover',
 };
 
 export const metadata: Metadata = {
@@ -56,11 +57,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
-        {/* Theme script runs only in browser; extensions can reorder/remove scripts — suppress hydration mismatch */}
+        {/* Always light mode: ensure dark class is never applied */}
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(!t&&d))document.documentElement.classList.add('dark');else document.documentElement.classList.remove('dark');})();`,
+            __html: `document.documentElement.classList.remove('dark');`,
           }}
         />
         {/* Google AdSense - replace with your publisher ID */}

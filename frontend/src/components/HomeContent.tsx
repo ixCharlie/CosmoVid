@@ -1,78 +1,59 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import Link from 'next/link';
 import { useLocale } from '@/contexts/LocaleContext';
 import { getTranslations } from '@/lib/translations';
-import { DownloadForm } from '@/components/DownloadForm';
-import { DownloadResults } from '@/components/DownloadResults';
+
+const tools = [
+  { key: 'tiktok', href: (locale: string) => `/${locale}/tiktok`, titleKey: 'toolTikTokTitle', descKey: 'toolTikTokDesc' },
+  { key: 'x', href: (locale: string) => `/${locale}/x`, titleKey: 'toolXTitle', descKey: 'toolXDesc' },
+] as const;
 
 export function HomeContent() {
   const { locale } = useLocale();
   const t = getTranslations(locale);
-  const [result, setResult] = useState<{
-    success: boolean;
-    title?: string;
-    author?: string;
-    cover?: string;
-    links: {
-      mp4HdWatermark?: string;
-      mp4HdNoWatermark?: string;
-      mp3?: string;
-    };
-    error?: string;
-    _submittedUrl?: string;
-  } | null>(null);
-  const [retryUrl, setRetryUrl] = useState<string | null>(null);
-
-  const handleRetry = useCallback((url: string) => {
-    setResult(null);
-    setRetryUrl(url);
-  }, []);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 theme-fade min-h-0">
-      <section className="animate-fade-in text-center mb-8 sm:mb-10 md:mb-14">
-        <h1 className="font-display text-2xl sm:text-4xl md:text-5xl text-charcoal dark:text-cream tracking-tight mb-2 sm:mb-3 px-1">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 md:py-12 theme-fade min-h-0">
+      <section className="text-center mb-8 sm:mb-12 md:mb-14">
+        <p className="font-display text-base sm:text-lg text-gold dark:text-gold mb-2">
+          {t('home.greeting')}
+        </p>
+        <h1 className="font-display text-xl sm:text-3xl md:text-4xl lg:text-5xl text-charcoal dark:text-cream tracking-tight mb-3 sm:mb-4 px-1">
           {t('home.title')}
         </h1>
-        <p className="text-stone dark:text-stone/80 text-base sm:text-lg md:text-xl max-w-xl mx-auto leading-snug">
-          {t('home.subtitle')}
+        <p className="text-stone dark:text-stone/80 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-snug">
+          {t('home.intro')}
         </p>
       </section>
-      <DownloadForm
-        onResult={setResult}
-        retryUrl={retryUrl}
-        onRetryUrlConsumed={() => setRetryUrl(null)}
-      />
-      {result && (
-        <div className="mt-6 sm:mt-8 animate-slide-up">
-          <DownloadResults
-            result={result}
-            onReset={() => setResult(null)}
-            onRetry={handleRetry}
-          />
-        </div>
-      )}
 
-      <section className="mt-10 sm:mt-12 md:mt-16 pt-8 sm:pt-10 border-t border-stone/20 dark:border-stone/30" aria-labelledby="how-to-use-heading">
-        <h2 id="how-to-use-heading" className="font-display text-lg sm:text-xl md:text-2xl text-charcoal dark:text-cream mb-4 sm:mb-6 text-center">
-          {t('home.howToUse')}
-        </h2>
-        <ol className="space-y-3 sm:space-y-4 max-w-lg mx-auto text-left">
-          {[
-            { key: 'step1', label: t('home.step1') },
-            { key: 'step2', label: t('home.step2') },
-            { key: 'step3', label: t('home.step3') },
-            { key: 'step4', label: t('home.step4') },
-          ].map(({ key, label }, i) => (
-            <li key={key} className="flex gap-3 sm:gap-4 items-start">
-              <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold/20 dark:bg-gold/30 text-gold font-display font-medium flex items-center justify-center text-sm">
-                {i + 1}
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-2xl mx-auto" aria-label={t('home.chooseTool')}>
+        {tools.map(({ key, href, titleKey, descKey }) => {
+          const isX = key === 'x';
+          const hoverBorder = isX ? 'hover:border-blue-500 dark:hover:border-blue-400' : 'hover:border-black dark:hover:border-cream';
+          const hoverText = isX ? 'group-hover:text-blue-500 dark:group-hover:text-blue-400' : 'group-hover:text-black dark:group-hover:text-cream';
+          const hoverArrow = isX ? 'group-hover:text-blue-500 dark:group-hover:text-blue-400' : 'group-hover:text-black dark:group-hover:text-cream';
+          return (
+            <Link
+              key={key}
+              href={href(locale)}
+              className={`group flex flex-col w-full min-h-[180px] sm:min-h-[200px] rounded-2xl border-2 border-stone/20 dark:border-stone/40 bg-white dark:bg-stone/5 hover:shadow-lg active:scale-[0.99] transition-none p-5 sm:p-6 text-left touch-manipulation ${hoverBorder}`}
+            >
+              <h2 className={`font-display text-lg sm:text-xl text-charcoal dark:text-cream mb-2 transition-none ${hoverText}`}>
+                {t(`tools.${titleKey}`)}
+              </h2>
+              <p className="text-stone dark:text-stone/80 text-sm sm:text-base flex-1 line-clamp-3">
+                {t(`tools.${descKey}`)}
+              </p>
+              <span className={`mt-4 inline-flex items-center gap-2 text-stone dark:text-stone/70 font-medium text-sm sm:text-base group-hover:gap-3 transition-none ${hoverArrow}`}>
+                {t('tools.useTool')}
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </span>
-              <span className="text-stone dark:text-stone/80 pt-0.5 text-sm sm:text-base">{label}</span>
-            </li>
-          ))}
-        </ol>
+            </Link>
+          );
+        })}
       </section>
     </div>
   );

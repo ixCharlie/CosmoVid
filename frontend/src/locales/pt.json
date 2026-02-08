@@ -1,8 +1,11 @@
 {
-  "nav": { "home": "Início", "tools": "Ferramentas", "faq": "FAQ", "about": "Sobre" },
+  "nav": { "home": "Início", "tools": "Ferramentas", "faq": "FAQ", "about": "Sobre", "privacy": "Privacidade", "terms": "Termos", "blog": "Blog" },
   "home": {
     "welcome": "Bem-vindo",
+    "greeting": "Olá",
     "title": "CosmoVid",
+    "intro": "Baixe vídeos do TikTok e X (Twitter) em HD. Grátis e rápido. Escolha uma ferramenta abaixo.",
+    "chooseTool": "Escolher ferramenta",
     "subtitle": "Baixe vídeos do TikTok em HD — com ou sem marca d'água. Grátis e rápido.",
     "getStarted": "Começar",
     "learnMore": "Saiba mais",
@@ -18,13 +21,15 @@
     "tryAnother": "Baixar outro vídeo",
     "duration": "Duração",
     "quality": "Qualidade",
+    "fps": "FPS",
+    "downloadStarting": "Seu download começará em um momento.",
     "howToUse": "Como usar",
     "step1": "Abra o TikTok e copie o link do vídeo (compartilhar → Copiar link).",
     "step2": "Cole o link na caixa acima.",
     "step3": "Clique em \"Obter links de download\" e aguarde um momento.",
     "step4": "Escolha MP4 (com ou sem marca d'água) e baixe.",
-    "metaTitle": "Baixar TikTok HD — Vídeos sem marca d'água grátis | CosmoVid",
-    "metaDescription": "Salve vídeos do TikTok em HD com um clique. Sem marca d'água, sem app — grátis. Cole o link, obtenha MP4. Rápido e em todos os dispositivos."
+    "metaTitle": "CosmoVid — Baixar TikTok e X | Vídeo HD grátis",
+    "metaDescription": "Baixe vídeos do TikTok e X (Twitter) em HD. Grátis, rápido, sem app. Download MP4."
   },
   "faq": {
     "title": "FAQ",
@@ -47,11 +52,34 @@
     "metaTitle": "Baixar TikTok HD — Vídeos sem marca d'água grátis | CosmoVid",
     "metaDescription": "Baixe vídeos do TikTok em HD. Com ou sem marca d'água. Cole o link, obtenha MP4. Grátis e rápido."
   },
+  "x": {
+    "placeholder": "Cole aqui o link do post do X (Twitter)...",
+    "urlValid": "Link X/Twitter válido",
+    "urlInvalid": "Link X/Twitter inválido",
+    "submit": "Obter link de download",
+    "loading": "Buscando vídeo...",
+    "errorInvalid": "Digite um link válido de post do X ou Twitter.",
+    "downloadVideo": "Baixar vídeo",
+    "tryAnother": "Baixar outro vídeo",
+    "fps": "FPS",
+    "downloadStarting": "Seu download começará em um momento.",
+    "howToUse": "Como usar",
+    "step1": "Abra o X (Twitter), encontre um post com vídeo e copie o link (compartilhar → Copiar link).",
+    "step2": "Cole o link na caixa acima.",
+    "step3": "Clique em \"Obter link de download\" e aguarde um momento.",
+    "step4": "Clique em \"Baixar vídeo\". O nome do arquivo será o título do post.",
+    "metaTitle": "Baixador de vídeo do X (Twitter) | CosmoVid",
+    "metaDescription": "Baixe vídeos do X (Twitter). Cole o link, obtenha MP4. Grátis."
+  },
   "tools": {
-    "title": "Ferramentas de vídeo",
+    "title": "Ferramentas",
     "intro": "Baixador de TikTok gratuito. Salve vídeos em HD com ou sem marca d'água.",
     "toolTikTokTitle": "Baixador de TikTok",
     "toolTikTokDesc": "Baixe vídeos do TikTok em HD como MP4. Cole um link e obtenha o download direto.",
+    "toolXTitle": "Baixador do X (Twitter)",
+    "toolXDesc": "Baixe vídeos do X (Twitter). Cole o link do post, obtenha MP4.",
+    "toolShrinkTitle": "Reduzir vídeo",
+    "toolShrinkDesc": "Comprima vídeos para reduzir o tamanho. Máx. 100 MB. Saída: MP4, 720p.",
     "useTool": "Usar ferramenta",
     "comingSoon": "Em breve",
     "moreComing": "Mais ferramentas de vídeo em breve.",
@@ -68,6 +96,65 @@
     "lightMode": "Modo claro",
     "copyLink": "Copiar link",
     "copied": "Copiado!",
-    "retry": "Tentar novamente com o mesmo link"
+    "retry": "Tentar novamente com o mesmo link",
+    "backToTools": "Voltar às ferramentas"
+  },
+  "sidebar": {
+    "label": "Baixadores de vídeo",
+    "navLabel": "Ferramentas de download",
+    "downloaders": "Baixadores",
+    "tiktok": "Baixador de TikTok",
+    "x": "Baixador do X (Twitter)"
+  },
+  "shrink": {
+    "title": "Reduzir vídeo",
+    "intro": "Envie um vídeo para comprimir. Saída: MP4 (até 720p).",
+    "maxSize": "Máx. {{maxMb}} MB",
+    "chooseFile": "Escolher arquivo de vídeo",
+    "submit": "Comprimir vídeo",
+    "loading": "Comprimindo...",
+    "errorFileTooBig": "O vídeo deve ter {{maxMb}} MB ou menos.",
+    "errorInvalid": "Escolha um arquivo de vídeo válido.",
+    "errorNetwork": "Algo deu errado. Tente novamente.",
+    "success": "Pronto! Seu arquivo será baixado automaticamente.",
+    "backToTools": "Voltar às ferramentas",
+    "metaTitle": "Reduzir vídeo | CosmoVid",
+    "metaDescription": "Comprima vídeos online. Reduza o tamanho até 100 MB. Grátis."
+  },
+  "privacy": {
+    "title": "Privacidade",
+    "lastUpdated": "Última atualização: fevereiro de 2025.",
+    "introTitle": "Introdução",
+    "intro": "O CosmoVid respeita sua privacidade. Esta política descreve como coletamos e usamos informações quando você usa nosso site e ferramentas de download.",
+    "adsTitle": "Publicidade e cookies",
+    "adsIntro": "Podemos usar redes de publicidade de terceiros como o Google AdSense. Essas empresas podem usar informações sobre suas visitas ao nosso e a outros sites.",
+    "adsPoint1": "Terceiros como o Google usam cookies para exibir anúncios com base em suas visitas anteriores.",
+    "adsPoint2": "O uso de cookies de publicidade pelo Google permite exibir anúncios com base em suas visitas.",
+    "adsPoint3": "Você pode desativar a publicidade personalizada nas configurações do Google ou em www.aboutads.info.",
+    "optOutIntro": "Links de exclusão:",
+    "dataTitle": "Dados que coletamos",
+    "data": "Quando você usa nossas ferramentas (ex.: colando uma URL), podemos processar a URL e metadados para o serviço de download. Não armazenamos seus dados pessoais por mais tempo do que o necessário.",
+    "contactTitle": "Contato",
+    "contact": "Para perguntas sobre esta política, entre em contato conosco pela página Sobre."
+  },
+  "terms": {
+    "title": "Termos de serviço",
+    "lastUpdated": "Última atualização: fevereiro de 2025.",
+    "acceptTitle": "Aceitação",
+    "accept": "Ao usar o CosmoVid, você concorda com estes Termos. Se não concordar, não use o site nem as ferramentas.",
+    "useTitle": "Uso do serviço",
+    "use": "Nossas ferramentas são apenas para uso pessoal não comercial. Não as use para baixar ou redistribuir conteúdo em violação aos direitos autorais. Você é responsável por cumprir as leis aplicáveis.",
+    "disclaimerTitle": "Aviso legal",
+    "disclaimer": "O CosmoVid não é afiliado ao TikTok, X (Twitter) ou outras plataformas. Fornecemos as ferramentas \"como estão\" sem garantias. Não nos responsabilizamos pelo uso do conteúdo baixado.",
+    "changesTitle": "Alterações",
+    "changes": "Podemos atualizar estes Termos a qualquer momento. O uso continuado após as alterações constitui aceitação.",
+    "contactTitle": "Contato",
+    "contact": "Para perguntas sobre estes Termos, entre em contato conosco pela página Sobre."
+  },
+  "blog": {
+    "title": "Blog",
+    "intro": "Dicas, guias e novidades sobre baixadores de vídeo e nossas ferramentas.",
+    "comingSoon": "Novos posts em breve.",
+    "readMore": "Leia mais"
   }
 }

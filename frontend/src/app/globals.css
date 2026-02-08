@@ -7,16 +7,23 @@
   --charcoal: #1A1A1A;
   --gold: #B8860B;
   --stone: #6B6B6B;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  touch-action: manipulation;
 }
 
 body {
   @apply bg-cream text-charcoal antialiased;
   font-feature-settings: "kern" 1, "liga" 1;
   transition: background-color 1.5s ease-in-out, color 1.5s ease-in-out;
+  overflow-x: hidden;
+  min-width: 0;
 }
 
 /* Theme toggle: 1.5s fade for page content (match header) */

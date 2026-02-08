@@ -1,8 +1,11 @@
 {
-  "nav": { "home": "首页", "tools": "工具", "faq": "常见问题", "about": "关于" },
+  "nav": { "home": "首页", "tools": "工具", "faq": "常见问题", "about": "关于", "privacy": "隐私政策", "terms": "服务条款", "blog": "博客" },
   "home": {
     "welcome": "欢迎",
+    "greeting": "你好",
     "title": "CosmoVid",
+    "intro": "高清下载 TikTok 和 X (Twitter) 视频。免费、快速。在下方选择工具。",
+    "chooseTool": "选择工具",
     "subtitle": "高清下载 TikTok 视频 — 带水印或无水印。免费、快速。",
     "getStarted": "开始使用",
     "learnMore": "了解更多",
@@ -18,13 +21,15 @@
     "tryAnother": "下载其他视频",
     "duration": "时长",
     "quality": "画质",
+    "fps": "帧率",
+    "downloadStarting": "您的下载即将开始。",
     "howToUse": "使用方法",
     "step1": "打开 TikTok 并复制视频链接（分享 → 复制链接）。",
     "step2": "将链接粘贴到上方输入框。",
     "step3": "点击「获取下载链接」并稍等片刻。",
     "step4": "选择 MP4（带/无水印）并下载。",
-    "metaTitle": "TikTok 高清下载 — 无水印视频免费保存 | CosmoVid",
-    "metaDescription": "一键保存 TikTok 高清视频。无水印、无需应用 — 免费。粘贴链接即可获取 MP4。快速，支持所有设备。"
+    "metaTitle": "CosmoVid — TikTok 和 X 视频下载 | 免费高清",
+    "metaDescription": "高清下载 TikTok 和 X (Twitter) 视频。免费、快速、无需应用。MP4 下载。"
   },
   "faq": {
     "title": "常见问题",
@@ -47,11 +52,34 @@
     "metaTitle": "TikTok 高清下载 — 无水印视频免费保存 | CosmoVid",
     "metaDescription": "高清下载 TikTok 视频。带水印或无水印。粘贴链接即可获取 MP4。免费、快速。"
   },
+  "x": {
+    "placeholder": "在此粘贴 X (Twitter) 视频帖子链接...",
+    "urlValid": "有效的 X/Twitter 链接",
+    "urlInvalid": "无效的 X/Twitter 链接",
+    "submit": "获取下载链接",
+    "loading": "正在获取视频...",
+    "errorInvalid": "请输入有效的 X 或 Twitter 帖子链接。",
+    "downloadVideo": "下载视频",
+    "tryAnother": "下载其他视频",
+    "fps": "帧率",
+    "downloadStarting": "您的下载即将开始。",
+    "howToUse": "使用方法",
+    "step1": "打开 X (Twitter)，找到视频帖子并复制链接（分享 → 复制链接）。",
+    "step2": "将链接粘贴到上方输入框。",
+    "step3": "点击「获取下载链接」并稍等片刻。",
+    "step4": "点击「下载视频」。文件名将使用帖子标题。",
+    "metaTitle": "X (Twitter) 视频下载器 | CosmoVid",
+    "metaDescription": "下载 X (Twitter) 视频。粘贴链接即可获取 MP4。免费。"
+  },
   "tools": {
-    "title": "视频工具",
+    "title": "工具",
     "intro": "免费 TikTok 下载器。保存高清视频，带水印或无水印。",
     "toolTikTokTitle": "TikTok 下载器",
     "toolTikTokDesc": "高清下载 TikTok 视频为 MP4。粘贴链接即可直接下载。",
+    "toolXTitle": "X (Twitter) 下载器",
+    "toolXDesc": "下载 X (Twitter) 视频。粘贴帖子链接即可获取 MP4。",
+    "toolShrinkTitle": "视频压缩",
+    "toolShrinkDesc": "压缩视频以减小文件大小。最大 100 MB。输出：MP4、720p。",
     "useTool": "使用工具",
     "comingSoon": "即将推出",
     "moreComing": "更多视频工具即将推出。",
@@ -68,6 +96,65 @@
     "lightMode": "浅色模式",
     "copyLink": "复制链接",
     "copied": "已复制！",
-    "retry": "使用同一链接重试"
+    "retry": "使用同一链接重试",
+    "backToTools": "返回工具"
+  },
+  "sidebar": {
+    "label": "视频下载器",
+    "navLabel": "下载工具",
+    "downloaders": "下载器",
+    "tiktok": "TikTok 视频下载器",
+    "x": "X (Twitter) 视频下载器"
+  },
+  "shrink": {
+    "title": "视频压缩",
+    "intro": "上传视频进行压缩。输出：MP4（最高 720p）。",
+    "maxSize": "最大 {{maxMb}} MB",
+    "chooseFile": "选择视频文件",
+    "submit": "压缩视频",
+    "loading": "压缩中...",
+    "errorFileTooBig": "视频须为 {{maxMb}} MB 或更小。",
+    "errorInvalid": "请选择有效的视频文件。",
+    "errorNetwork": "出错了，请重试。",
+    "success": "完成！文件将自动下载。",
+    "backToTools": "返回工具",
+    "metaTitle": "视频压缩 | CosmoVid",
+    "metaDescription": "在线压缩视频。将大小减至 100 MB 以内。免费。"
+  },
+  "privacy": {
+    "title": "隐私政策",
+    "lastUpdated": "最后更新：2025 年 2 月。",
+    "introTitle": "介绍",
+    "intro": "CosmoVid 尊重您的隐私。本政策说明我们如何在使用本网站和视频下载工具时收集和使用信息。",
+    "adsTitle": "广告与 Cookie",
+    "adsIntro": "我们可能使用 Google AdSense 等第三方广告网络。这些公司可能根据您对我们及其他网站的访问展示广告。",
+    "adsPoint1": "Google 等第三方使用 Cookie 根据您之前的访问展示广告。",
+    "adsPoint2": "Google 使用广告 Cookie 可根据您的访问展示广告。",
+    "adsPoint3": "您可在 Google 广告设置或 www.aboutads.info 退出个性化广告。",
+    "optOutIntro": "退出链接：",
+    "dataTitle": "我们收集的数据",
+    "data": "当您使用我们的工具（例如粘贴 URL）时，我们可能会处理 URL 和元数据以提供下载服务。我们不会超出必要期限保留您的个人数据。",
+    "contactTitle": "联系",
+    "contact": "有关本政策的疑问，请通过关于页面联系我们。"
+  },
+  "terms": {
+    "title": "服务条款",
+    "lastUpdated": "最后更新：2025 年 2 月。",
+    "acceptTitle": "接受",
+    "accept": "使用 CosmoVid 即表示您同意本条款。如不同意，请勿使用本网站或工具。",
+    "useTitle": "服务使用",
+    "use": "我们的工具仅供个人非商业使用。请勿用于在违反版权的情况下下载或传播内容。您须遵守适用法律。",
+    "disclaimerTitle": "免责声明",
+    "disclaimer": "CosmoVid 与 TikTok、X (Twitter) 或其他平台无关联。我们按「现状」提供工具，不提供担保。我们对您使用下载内容的方式不承担责任。",
+    "changesTitle": "变更",
+    "changes": "我们可随时更新本条款。变更后继续使用即视为接受。",
+    "contactTitle": "联系",
+    "contact": "有关本条款的疑问，请通过关于页面联系我们。"
+  },
+  "blog": {
+    "title": "博客",
+    "intro": "视频下载器及我们工具的使用技巧、指南与动态。",
+    "comingSoon": "新文章即将推出。",
+    "readMore": "阅读更多"
   }
 }

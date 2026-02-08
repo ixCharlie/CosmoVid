@@ -10,14 +10,12 @@ import zh from '@/locales/zh.json';
 import hi from '@/locales/hi.json';
 import ru from '@/locales/ru.json';
 
-export type PageKey = 'home' | 'faq' | 'about' | 'shrink' | 'tiktok' | 'x' | 'tools';
+export type PageKey = 'home' | 'shrink' | 'tiktok' | 'x' | 'tools';
 
 type MetaMessages = Record<
   Locale,
   {
     home: { metaTitle: string; metaDescription: string };
-    faq: { metaTitle: string; metaDescription: string };
-    about: { metaTitle: string; metaDescription: string };
     shrink?: { metaTitle: string; metaDescription: string };
     tools?: { metaTitle: string; metaDescription: string };
     tiktok?: { metaTitle: string; metaDescription: string };

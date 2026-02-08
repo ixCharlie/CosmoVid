@@ -9,8 +9,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const validLocale: Locale = isLocale(locale) ? locale : 'en';
-  // SEO targets TikTok tool; page content greets visitors
-  const meta = getPageMeta(validLocale, 'tiktok');
+  const meta = getPageMeta(validLocale, 'home');
   const alternates = getAlternatesForPageWithLocale(validLocale, 'home');
   const url = alternates.canonical;
   return {

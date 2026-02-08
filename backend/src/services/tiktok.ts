@@ -16,6 +16,7 @@ export interface DownloadResult {
   cover?: string;
   duration?: number; // seconds
   quality?: string; // e.g. "720p", "1080p"
+  fps?: number;
   links: {
     mp4HdWatermark?: string;
     mp4HdNoWatermark?: string;
@@ -38,6 +39,7 @@ interface YtDlpFormat {
   acodec?: string;
   format_note?: string;
   height?: number;
+  fps?: number;
 }
 
 interface YtDlpJson {
@@ -124,6 +126,7 @@ export async function getTikTokDownloadLinks(url: string): Promise<DownloadResul
         : (chosenFormat?.format_note && !/watermark/i.test(chosenFormat.format_note))
           ? chosenFormat.format_note
           : undefined;
+      const fps = chosenFormat?.fps != null && Number.isFinite(chosenFormat.fps) ? chosenFormat.fps : undefined;
       const result: DownloadResult = {
         success: true,
         title: data.title ?? undefined,
@@ -131,6 +134,7 @@ export async function getTikTokDownloadLinks(url: string): Promise<DownloadResul
         cover: data.thumbnail ?? undefined,
         duration: typeof data.duration === 'number' ? data.duration : undefined,
         quality: quality ?? undefined,
+        fps: fps ?? undefined,
         links: {
           mp4HdWatermark: videoUrlWatermark,
           mp4HdNoWatermark: videoUrlNoWatermark,

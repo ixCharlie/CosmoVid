@@ -16,6 +16,7 @@ export interface XDownloadResult {
   cover?: string;
   duration?: number;
   quality?: string;
+  fps?: number;
   links: {
     video?: string;
   };
@@ -33,6 +34,7 @@ interface YtDlpFormat {
   vcodec?: string;
   acodec?: string;
   height?: number;
+  fps?: number;
   format_note?: string;
 }
 
@@ -100,6 +102,7 @@ export async function getXDownloadLinks(url: string): Promise<XDownloadResult> {
         : (best?.format_note && !/unknown/i.test(best.format_note))
           ? best.format_note
           : undefined;
+      const fps = best?.fps != null && Number.isFinite(best.fps) ? best.fps : undefined;
       const result: XDownloadResult = {
         success: true,
         title: data.title ?? undefined,
@@ -107,6 +110,7 @@ export async function getXDownloadLinks(url: string): Promise<XDownloadResult> {
         cover: data.thumbnail ?? undefined,
         duration: typeof data.duration === 'number' ? data.duration : undefined,
         quality: quality ?? undefined,
+        fps: fps ?? undefined,
         links: { video: videoUrl },
       };
       cache.set(cacheKey, result);

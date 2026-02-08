@@ -40,11 +40,11 @@ export function TikTokPageClient() {
           ← {t('common.backToHome')}
         </Link>
       </p>
-      <section className="animate-fade-in text-center mb-6 sm:mb-8 md:mb-10">
-        <h1 className="font-display text-2xl sm:text-3xl md:text-4xl text-charcoal dark:text-cream tracking-tight mb-2 sm:mb-3 px-2">
+      <section className="animate-fade-in text-center mb-4 sm:mb-8 md:mb-10">
+        <h1 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-charcoal dark:text-cream tracking-tight mb-2 sm:mb-3 px-2">
           {t('tools.toolTikTokTitle')}
         </h1>
-        <p className="text-stone dark:text-stone/80 text-base sm:text-lg max-w-xl mx-auto leading-snug px-1">
+        <p className="text-stone dark:text-stone/80 text-sm sm:text-base max-w-xl mx-auto leading-snug px-1">
           {t('tools.toolTikTokDesc')}
         </p>
       </section>
@@ -63,7 +63,7 @@ export function TikTokPageClient() {
         </div>
       )}
       <section className="mt-10 sm:mt-12 pt-8 border-t border-stone/20 dark:border-stone/30" aria-labelledby="how-to-use-heading">
-        <h2 id="how-to-use-heading" className="font-display text-lg sm:text-xl text-charcoal dark:text-cream mb-4 text-center">
+        <h2 id="how-to-use-heading" className="font-display text-base sm:text-lg text-charcoal dark:text-cream mb-3 text-center">
           {t('home.howToUse')}
         </h2>
         <ol className="space-y-3 max-w-lg mx-auto text-left">
