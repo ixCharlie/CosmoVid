@@ -10,7 +10,7 @@ import zh from '@/locales/zh.json';
 import hi from '@/locales/hi.json';
 import ru from '@/locales/ru.json';
 
-export type PageKey = 'home' | 'shrink' | 'tiktok' | 'x' | 'tools';
+export type PageKey = 'home' | 'shrink' | 'tiktok' | 'x' | 'instagram' | 'instagramStories' | 'tools';
 
 type MetaMessages = Record<
   Locale,
@@ -20,6 +20,8 @@ type MetaMessages = Record<
     tools?: { metaTitle: string; metaDescription: string };
     tiktok?: { metaTitle: string; metaDescription: string };
     x?: { metaTitle: string; metaDescription: string };
+    instagram?: { metaTitle: string; metaDescription: string };
+    instagramStories?: { metaTitle: string; metaDescription: string };
   }
 >;
 
@@ -52,9 +54,19 @@ export function getPageMeta(locale: Locale, page: PageKey): { title: string; des
 
 const baseUrl = () => (process.env.NEXT_PUBLIC_SITE_URL || 'https://cosmovid.example.com').replace(/\/$/, '');
 
+const PAGE_PATH: Record<PageKey, string> = {
+  home: '',
+  shrink: '/shrink',
+  tiktok: '/tiktok',
+  x: '/x',
+  instagram: '/instagram',
+  instagramStories: '/instagram/stories',
+  tools: '/tools',
+};
+
 /** Build hreflang/languages object for all locales for a given page. */
 function buildLanguagesForPage(page: PageKey): Record<string, string> {
-  const pathSegment = page === 'home' ? '' : `/${page}`;
+  const pathSegment = PAGE_PATH[page] ?? (page === 'home' ? '' : `/${page}`);
   const languages: Record<string, string> = {
     'x-default': `${baseUrl}/en${pathSegment}`,
   };
@@ -66,15 +78,16 @@ function buildLanguagesForPage(page: PageKey): Record<string, string> {
 
 /** Path-based locale URLs for all supported languages (SEO hreflang). */
 export function getAlternatesForPage(page: PageKey): { canonical: string; languages: Record<string, string> } {
+  const pathSegment = PAGE_PATH[page] ?? (page === 'home' ? '' : `/${page}`);
   return {
-    canonical: `${baseUrl}/en${page === 'home' ? '' : `/${page}`}`,
+    canonical: `${baseUrl}/en${pathSegment}`,
     languages: buildLanguagesForPage(page),
   };
 }
 
 /** Build canonical and hreflang for the current locale and page. */
 export function getAlternatesForPageWithLocale(locale: Locale, page: PageKey): { canonical: string; languages: Record<string, string> } {
-  const pathSegment = page === 'home' ? '' : `/${page}`;
+  const pathSegment = PAGE_PATH[page] ?? (page === 'home' ? '' : `/${page}`);
   const canonical = `${baseUrl}/${locale}${pathSegment}`;
   return {
     canonical,

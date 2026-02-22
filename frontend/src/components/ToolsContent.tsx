@@ -7,6 +7,8 @@ import { getTranslations } from '@/lib/translations';
 const tools = [
   { key: 'tiktok', href: (locale: string) => `/${locale}/tiktok`, titleKey: 'toolTikTokTitle', descKey: 'toolTikTokDesc' },
   { key: 'x', href: (locale: string) => `/${locale}/x`, titleKey: 'toolXTitle', descKey: 'toolXDesc' },
+  { key: 'instagram', href: (locale: string) => `/${locale}/instagram`, titleKey: 'toolInstagramTitle', descKey: 'toolInstagramDesc' },
+  { key: 'instagramStories', href: (locale: string) => `/${locale}/instagram/stories`, titleKey: 'toolInstagramStoriesTitle', descKey: 'toolInstagramStoriesDesc' },
 ] as const;
 
 export function ToolsContent() {
@@ -24,12 +26,13 @@ export function ToolsContent() {
         </p>
       </section>
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-2xl mx-auto" aria-label={t('tools.title')}>
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-3xl mx-auto" aria-label={t('tools.title')}>
         {tools.map(({ key, href, titleKey, descKey }) => {
           const isX = key === 'x';
-          const hoverBorder = isX ? 'hover:border-blue-500' : 'hover:border-black';
-          const hoverText = isX ? 'group-hover:text-blue-500' : 'group-hover:text-black';
-          const hoverArrow = isX ? 'group-hover:text-blue-500' : 'group-hover:text-black';
+          const isInstagram = key === 'instagram' || key === 'instagramStories';
+          const hoverBorder = isX ? 'hover:border-blue-500' : isInstagram ? 'hover:border-pink-500' : 'hover:border-black';
+          const hoverText = isX ? 'group-hover:text-blue-500' : isInstagram ? 'group-hover:text-pink-500' : 'group-hover:text-black';
+          const hoverArrow = isX ? 'group-hover:text-blue-500' : isInstagram ? 'group-hover:text-pink-500' : 'group-hover:text-black';
           return (
             <Link
               key={key}

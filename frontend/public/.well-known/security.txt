@@ -1,0 +1,7 @@
+# CosmoVid Security Policy (RFC 9116)
+# Update Contact, Expires, and Policy before deploying.
+
+Contact: mailto:security@cosmovid.com
+Expires: 2026-08-08T00:00:00.000Z
+Policy: https://cosmovid.com/security
+Canonical: https://cosmovid.com/.well-known/security.txt

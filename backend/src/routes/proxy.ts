@@ -48,9 +48,9 @@ function decodeMediaParam(encoded: string): string | null {
 }
 
 /** Sanitize user-provided filename for Content-Disposition: ASCII-only, no control chars, safe for HTTP headers. */
-function sanitizeFilename(raw: string | undefined, type: 'mp4' | 'mp3'): string {
-  const ext = type === 'mp3' ? '.mp3' : '.mp4';
-  const defaultBase = type === 'mp3' ? 'tiktok-audio' : 'tiktok-video';
+function sanitizeFilename(raw: string | undefined, type: 'mp4' | 'mp3' | string): string {
+  const ext = type === 'mp3' ? '.mp3' : type === 'mp4' ? '.mp4' : type.startsWith('.') ? type : `.${type}`;
+  const defaultBase = type === 'mp3' ? 'tiktok-audio' : type === 'mp4' ? 'tiktok-video' : 'download';
   if (!raw || typeof raw !== 'string') return `${defaultBase}${ext}`;
   const decoded = tryDecodeUri(raw);
   const safe = decoded
@@ -285,6 +285,15 @@ function isXUrl(url: string): boolean {
   }
 }
 
+function isInstagramUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return host === 'instagram.com' || host.endsWith('.instagram.com');
+  } catch {
+    return false;
+  }
+}
+
 export const xProxyRouter = Router();
 xProxyRouter.use(limiter);
 xProxyRouter.get('/proxy', async (req: Request, res: Response) => {
@@ -311,6 +320,75 @@ xProxyRouter.get('/proxy', async (req: Request, res: Response) => {
     }
   } catch (err) {
     console.error('X proxy yt-dlp error:', err);
+    if (!res.headersSent) {
+      return res.status(502).json({ error: 'Download failed. Please try again.' });
+    }
+  }
+});
+
+/** Stream Instagram media (post, reel, image) with yt-dlp. */
+export const instagramProxyRouter = Router();
+instagramProxyRouter.use(limiter);
+instagramProxyRouter.get('/proxy', async (req: Request, res: Response) => {
+  const instagramUrlEnc = typeof req.query.instagram_url === 'string' ? req.query.instagram_url.trim() : '';
+  const mediaUrlEnc = typeof req.query.media_url === 'string' ? req.query.media_url.trim() : '';
+  const filenameParam = typeof req.query.filename === 'string' ? req.query.filename.trim() : '';
+  const ext = ((req.query.type as string) || 'mp4').toLowerCase();
+  const isImage = ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'webp';
+  const defaultExt = isImage ? ext : 'mp4';
+  const filename = sanitizeFilename(filenameParam || undefined, defaultExt) || `instagram.${defaultExt}`;
+  const contentType = isImage
+    ? (ext === 'png' ? 'image/png' : ext === 'webp' ? 'image/webp' : 'image/jpeg')
+    : 'video/mp4';
+
+  // Direct media URL (from yt-dlp dump)
+  if (mediaUrlEnc) {
+    const mediaUrl = decodeMediaParam(mediaUrlEnc);
+    if (!mediaUrl) {
+      return res.status(400).json({ error: 'Invalid media URL.' });
+    }
+    try {
+      const response = await fetch(mediaUrl, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+          Referer: 'https://www.instagram.com/',
+        },
+      });
+      if (!response.ok || !response.body) {
+        return res.status(502).json({ error: 'Could not fetch the file.' });
+      }
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+      res.setHeader('Content-Type', response.headers.get('content-type') || contentType);
+      const nodeStream = Readable.fromWeb(response.body as any);
+      nodeStream.pipe(res);
+      return;
+    } catch (err) {
+      console.error('Instagram media fetch error:', err);
+      return res.status(502).json({ error: 'Download failed. Please try again.' });
+    }
+  }
+
+  // Instagram page URL - stream with yt-dlp
+  if (!instagramUrlEnc) {
+    return res.status(400).json({ error: 'Missing instagram_url or media_url.' });
+  }
+
+  const pageUrl = decodeMediaParam(instagramUrlEnc);
+  if (!pageUrl || !isInstagramUrl(pageUrl)) {
+    return res.status(400).json({ error: 'Invalid Instagram URL.' });
+  }
+
+  try {
+    const ok = await streamWithYtDlpBest(pageUrl, res, filename, contentType);
+    if (!ok && !res.headersSent) {
+      return res.status(502).json({
+        error: 'Download failed. Make sure yt-dlp is installed and the URL is valid.',
+      });
+    }
+  } catch (err) {
+    console.error('Instagram proxy yt-dlp error:', err);
     if (!res.headersSent) {
       return res.status(502).json({ error: 'Download failed. Please try again.' });
     }

@@ -2,7 +2,9 @@ import { Router, Request, Response } from 'express';
 import rateLimit from 'express-rate-limit';
 import { getTikTokDownloadLinks } from '../services/tiktok';
 import { getXDownloadLinks } from '../services/x';
-import { xProxyRouter } from './proxy';
+import { getInstagramDownloadLinks } from '../services/instagram';
+import { getInstagramStoriesDownloadLinks } from '../services/instagram-stories';
+import { xProxyRouter, instagramProxyRouter } from './proxy';
 import { RATE_LIMIT_WINDOW_MS, RATE_LIMIT_MAX } from '../config';
 
 const limiter = rateLimit({
@@ -47,5 +49,38 @@ downloadRouter.post('/x', async (req: Request, res: Response) => {
   }
 
   const result = await getXDownloadLinks(url);
+  return res.json(result);
+});
+
+downloadRouter.use('/instagram', limiter);
+downloadRouter.use('/instagram', instagramProxyRouter);
+
+downloadRouter.post('/instagram', async (req: Request, res: Response) => {
+  const url = typeof req.body?.url === 'string' ? req.body.url.trim() : '';
+
+  if (!url) {
+    return res.status(400).json({
+      success: false,
+      error: 'Instagram URL is required.',
+      links: {},
+    });
+  }
+
+  const result = await getInstagramDownloadLinks(url);
+  return res.json(result);
+});
+
+downloadRouter.post('/instagram/stories', async (req: Request, res: Response) => {
+  const url = typeof req.body?.url === 'string' ? req.body.url.trim() : '';
+
+  if (!url) {
+    return res.status(400).json({
+      success: false,
+      error: 'Instagram stories URL is required.',
+      links: {},
+    });
+  }
+
+  const result = await getInstagramStoriesDownloadLinks(url);
   return res.json(result);
 });

@@ -4,7 +4,7 @@ import { locales } from '@/lib/i18n';
 const base = (process.env.NEXT_PUBLIC_SITE_URL || 'https://cosmovid.example.com').replace(/\/$/, '');
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ['', '/tools', '/tiktok', '/x'];
+  const routes = ['', '/tools', '/tiktok', '/x', '/instagram', '/instagram/stories'];
   const entries: MetadataRoute.Sitemap = [];
 
   entries.push({

@@ -7,6 +7,8 @@ import { getTranslations } from '@/lib/translations';
 const tools = [
   { key: 'tiktok', href: (locale: string) => `/${locale}/tiktok`, titleKey: 'toolTikTokTitle', descKey: 'toolTikTokDesc' },
   { key: 'x', href: (locale: string) => `/${locale}/x`, titleKey: 'toolXTitle', descKey: 'toolXDesc' },
+  { key: 'instagram', href: (locale: string) => `/${locale}/instagram`, titleKey: 'toolInstagramTitle', descKey: 'toolInstagramDesc' },
+  { key: 'instagramStories', href: (locale: string) => `/${locale}/instagram/stories`, titleKey: 'toolInstagramStoriesTitle', descKey: 'toolInstagramStoriesDesc' },
 ] as const;
 
 export function HomeContent() {
@@ -27,12 +29,13 @@ export function HomeContent() {
         </p>
       </section>
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-2xl mx-auto" aria-label={t('home.chooseTool')}>
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-3xl mx-auto" aria-label={t('home.chooseTool')}>
         {tools.map(({ key, href, titleKey, descKey }) => {
           const isX = key === 'x';
-          const hoverBorder = isX ? 'hover:border-blue-500 dark:hover:border-blue-400' : 'hover:border-black dark:hover:border-cream';
-          const hoverText = isX ? 'group-hover:text-blue-500 dark:group-hover:text-blue-400' : 'group-hover:text-black dark:group-hover:text-cream';
-          const hoverArrow = isX ? 'group-hover:text-blue-500 dark:group-hover:text-blue-400' : 'group-hover:text-black dark:group-hover:text-cream';
+          const isInstagram = key === 'instagram' || key === 'instagramStories';
+          const hoverBorder = isX ? 'hover:border-blue-500 dark:hover:border-blue-400' : isInstagram ? 'hover:border-pink-500 dark:hover:border-pink-400' : 'hover:border-black dark:hover:border-cream';
+          const hoverText = isX ? 'group-hover:text-blue-500 dark:group-hover:text-blue-400' : isInstagram ? 'group-hover:text-pink-500 dark:group-hover:text-pink-400' : 'group-hover:text-black dark:group-hover:text-cream';
+          const hoverArrow = isX ? 'group-hover:text-blue-500 dark:group-hover:text-blue-400' : isInstagram ? 'group-hover:text-pink-500 dark:group-hover:text-pink-400' : 'group-hover:text-black dark:group-hover:text-cream';
           return (
             <Link
               key={key}
